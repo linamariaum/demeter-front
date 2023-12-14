@@ -48,9 +48,12 @@ const Header = () => {
 		};
 	}, [showDropdown]);
 
+
 	useLayoutEffect(() => {
-		const forbiddenLocations = ["/resetPassword", "/"]
-		if (forbiddenLocations.includes(location.pathname)) {
+		const forbiddenLocations = ["resetPassword", "newPassword"]
+		const newLocation = location.pathname.replace(/\/+/g, "")
+		const condition = forbiddenLocations.some(f => (newLocation !== "" && newLocation.includes(f)) || location.pathname === "/")
+		if (condition) {
 			setHeaderView(false)
 		}
 		else if (!headerView) {

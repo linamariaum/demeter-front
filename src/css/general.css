@@ -116,7 +116,16 @@
     left:130px;
 }
 
+.tamañoS{
+  width: 82%;
+  position: absolute;
+  right: 51px;
+}
 
+.text-city{
+  position: relative;
+  right: 117px;
+}
 
 @media screen and (max-width: 1366px)  and (min-width: 786px)  {
   .position-shop {

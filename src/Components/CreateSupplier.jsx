@@ -19,6 +19,7 @@ const style = {
   pb: 3
 };
 
+
 export default function CreateSupplier({
   onDefaultSubmit = null,
   buttonProps = {
@@ -90,19 +91,6 @@ export default function CreateSupplier({
         }
         break
       }
- case "Name_Supplier": {
-        value = target.replace(/\s+/g, " ").toUpperCase()
-        break
-
-      }
-
-      case "City": {
-        value = target.replace(/\s+/g, " ").toUpperCase()
-        break
-
-      }
-
-
       default: break
     }
     // value = value.trim()
@@ -256,7 +244,7 @@ export default function CreateSupplier({
                             {...register("Type_Document", {
                               required: "El tipo de documento es requerido"
                             })}
-                            className=" form-control"
+                            className="form-select"
                             onChange={() => {
                               setValue("Document", "")
                             }}
@@ -415,7 +403,7 @@ export default function CreateSupplier({
 
                     <div className="city">
                       <div className="form-group col-md-6">
-                        <label htmlFor="City" className="form-label text-city">
+                        <label htmlFor="City" className="form-label">
                           Ciudad
                         </label>
                         <input
@@ -428,7 +416,7 @@ export default function CreateSupplier({
                             }
                           })}
                           type="text"
-                          className="form-control tamañoS"
+                          className="form-control"
                           required
                           onChange={(e) => handleInputChange("City", e.target.value)}
 
@@ -440,15 +428,15 @@ export default function CreateSupplier({
                       </div>
                     </div>
                     <div className="buttonconfirm">
-                      <div className="mb-4 ">
+                      <div className="mb-3">
                         <button
-                          className="btn btn-primary mr-5 mt-5"
+                          className="btn btn-primary mr-5"
                           type="submit"
                         >
                           Confirmar
                         </button>
                         <button
-                          className="btn btn-primary mt-5"
+                          className="btn btn-primary"
                           onClick={handleClose}
                           type="button"
                         >
