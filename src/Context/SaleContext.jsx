@@ -1,5 +1,6 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { Createsale, CreatesaleDetail, GetDetails, UpdSale, getSale, pay, GetoneSale, CreateManysaleDetails, deleteDetailSale } from '../Api/sale.request'; 
+import { Createsale, CreatesaleDetail, GetDetails, UpdSale, getSale, pay, GetoneSale, CreateManysaleDetails, deleteDetailSale } from '../Api/sale.request';
+import { useProduct } from './Product.context.jsx'
 import React from 'react';
 export const SaleContext = createContext();
 
@@ -15,19 +16,20 @@ export const SaleProvider = ({ children }) => {
 
     const [newDetails, setnewDetails] = useState([]);
     const [Sale, setSale] = useState([]);
-    const [Sales, setSales] = useState ([]);
+    const [Sales, setSales] = useState([]);
     const [details, setDetails] = useState([]);
     const [total, setTotal] = useState([]);
     const [action, setAction] = useState([]) // 1: Create 2: Update
+    const [getDetailProduct2] = useProduct();
 
 
 
     const Create = async (waiter) => {
         try {
             const res = await Createsale({
-                Total : total,
-                SubTotal : total,
-                User_ID : waiter 
+                Total: total,
+                SubTotal: total,
+                User_ID: waiter
             });
             setSale(res.data)
         } catch (error) {
@@ -45,6 +47,7 @@ export const SaleProvider = ({ children }) => {
     const CreateDetail = async (data) => {
         try {
             const res = await CreatesaleDetail(data);
+            getDetailProduct2();
             return (res)
         } catch (error) {
             console.log(error)
@@ -55,6 +58,7 @@ export const SaleProvider = ({ children }) => {
         try {
             const res = await CreateManysaleDetails(data);
             setnewDetails([])
+            getDetailProduct2();
             console.log(res.data)
         } catch (error) {
             console.log(error)
@@ -80,13 +84,13 @@ export const SaleProvider = ({ children }) => {
 
     }
 
-    const fetchGain = async (totalMoney) =>{
+    const fetchGain = async (totalMoney) => {
         setTotal(totalMoney)
     }
 
     const Count = async (data) => {
         try {
-            
+
             const res = await UpdSale(data);
         } catch (error) {
             console.log("no funciona el actualizar")
@@ -94,7 +98,7 @@ export const SaleProvider = ({ children }) => {
 
     }
 
-    const fetchSales = async() =>{
+    const fetchSales = async () => {
 
         try {
             const res = await getSale();
@@ -105,34 +109,36 @@ export const SaleProvider = ({ children }) => {
 
     }
 
-    const paySale = async(data, payment) =>{
+    const paySale = async (data, payment) => {
         try {
-           const res =await pay({"ID_Sale": data,
-           "Payment": payment});
-           console.log(res.data)
+            const res = await pay({
+                "ID_Sale": data,
+                "Payment": payment
+            });
+            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
     }
-    const deleteDetail = async(data) =>{
+    const deleteDetail = async (data) => {
         try {
-           const res =await deleteDetailSale(data);
-           console.log(res.data)
+            const res = await deleteDetailSale(data);
+            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
     }
 
     const addnewDetail = (detail) => {
-       
+
         setnewDetails((prevList) => [...prevList, detail]);
-      };
+    };
 
     const selectAction = (act) => {
         setAction(act)
     }
 
-  
+
 
 
     return (
@@ -153,11 +159,11 @@ export const SaleProvider = ({ children }) => {
                 paySale,
                 fetchSales,
                 fetchGain,
-                Create, 
+                Create,
                 CreateDetail,
                 createManyDetails,
                 getDetailsSale,
-                Count    
+                Count
             }}
         >
             {children}

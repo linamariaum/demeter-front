@@ -21,15 +21,10 @@ const style = {
 
 function CreateProducts({ onClose, onCreated }) {
 
-    const { control, register, handleSubmit, formState: { errors, isValid }, setError } = useForm();
+    const { control, register, handleSubmit, formState: { errors }, setError } = useForm();
     const { createProduct, product } = useProduct();
     const { Category_products } = useCategoryProducts();
     const [selectedCategory, setSelectedCategory] = useState(null);
-
-    const handleCategoryChange = (selectedOption) => {
-        setSelectedCategory(selectedOption);
-
-    };
 
     const customStyles = {
         control: (provided, state) => ({
@@ -73,7 +68,6 @@ function CreateProducts({ onClose, onCreated }) {
         values.ProductCategory_ID = selectedCategory.value;
 
         createProduct(values)
-
         onCreated();
         onClose();
     });
@@ -185,6 +179,36 @@ function CreateProducts({ onClose, onCreated }) {
                                         )}
                                     </div>
 
+                                    <div className="form-group col-md-6">
+                                        <label htmlFor="Image" className="form-label">
+                                            Imagen: <strong>*</strong>
+                                        </label>
+                                        <input
+                                            {...register("Image", {
+                                                required: "La imagen es obligatorio",
+                                                validate: (value) => {
+                                                    console.log('Valor del archivo:', value);
+                                                    if (!value[0]) {
+                                                        return 'Por favor, selecciona una imagen.';
+                                                    }
+                                                    const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                                                    const file = value[0];
+
+                                                    if (!allowedMimeTypes.includes(file.type)) {
+                                                        return 'Formato de imagen no permitido. Utiliza archivos JPG, JPEG, PNG o GIF.';
+                                                    }
+                                                },
+                                            })}
+                                            type="file"
+                                            placeholder='Imagen del producto'
+                                            className="form-control"
+                                        />
+                                        {errors.Image && (
+                                            <p className="text-red-500">
+                                                {errors.Image.message}
+                                            </p>
+                                        )}
+                                    </div>
                                 </div>
 
                                 <div className="buttonconfirm">

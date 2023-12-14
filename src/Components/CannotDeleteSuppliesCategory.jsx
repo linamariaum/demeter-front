@@ -39,7 +39,7 @@ function CannotDeleteCategory({ onClose }) {
                 <h1 className="text-3xl font-semibold">No se puede eliminar la categoría</h1>
                 <p className="deleteText">Esta categoría no se puede eliminar porque tiene insumos asociados.</p>
                 <div className="flex justify-between ">
-                    <button onClick={onClose} style={buttonStyles} className="btn btn-icon btn-primary"
+                    <button onClick={onClose} style={buttonStyles} className="btn btn-icon btn-danger"
                         title="Este botón sirve para cerrar la ventana modal."
                     >
                         Cerrar

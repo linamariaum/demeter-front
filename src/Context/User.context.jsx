@@ -361,7 +361,6 @@ export const User = ({ children }) => {
         updatePasswordLogin,
         //------------- Login ------------//
         isAuthenticated,
-        isAuthenticated,
         signin,
         loading,
         logout,

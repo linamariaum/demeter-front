@@ -25,15 +25,11 @@ export function Product({ children }) {
     const getCurrentProduct = (id) => {
         try {
             setCurrentProd(id)
-            
-            
-            
         } catch (error) {
             console.error(error);
         }
     }
     
-
     const getProducts = async () => {
         try {
             const res = await getProductsRequest();
@@ -111,17 +107,15 @@ export function Product({ children }) {
     const getDetailProduct2 = async (id) => {
         try {
             const res = await getDetailProductRequest2(id);
-            
+            return res;
         } catch (error) {
             console.error(error);
         }
     }
 
-
     const createDetailP = async ( datilsP) => {
         try {
-            await createDetailPRequest( datilsP);
-            getDetailProduct();
+            await createDetailPRequest(datilsP);
         } catch (error) {
             console.error(error);
         }
@@ -145,7 +139,6 @@ export function Product({ children }) {
             console.log(error)
         }
     }
-
 
     const getProduct = async (id) => {
         try {

@@ -3,14 +3,13 @@ import { useProduct } from '../Context/Product.context.jsx';
 
 function ViewDetailProduct() {
 
-    const { getDetailProduct, detailP, deleteDetailProduct } = useProduct();
+    const { getDetailProduct, detailP, deleteDetailProduct, CurrentProd } = useProduct();
 
     useEffect(() => {
         getDetailProduct();
-        console.log(detailP)
     }, []);
 
-    const detailsArray = Array.isArray(detailP) ? detailP : [];
+    // const detailsArray = Array.isArray(detailP) ? detailP : [];
 
     return (
         <div className="table-responsive">
@@ -23,7 +22,7 @@ function ViewDetailProduct() {
                     </tr>
                 </thead>
                 <tbody>
-                    {detailsArray.map((detail) => (
+                    {detailP.map((detail) => (
                         <tr key={detail.ID_ProductDetail}>
                             <td>{detail.Supply ? detail.Supply.Name_Supplies : ''}</td>
                             <td>{detail.Lot_ProductDetail} {detail.Supply.measure}</td>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useSaleContext } from '../context/SaleContext';
-import { useProduct } from '../context/ProductContext';
+import { useSaleContext } from '../Context/SaleContext';
+import { useProduct } from '../Context/ProductContext';
 import { IoIosAdd } from 'react-icons/io';
 import { AiOutlineMinus } from 'react-icons/ai';
 

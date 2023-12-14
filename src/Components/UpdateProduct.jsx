@@ -1,24 +1,9 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-import Box from "@mui/material/Box";
 import { useForm, Controller } from 'react-hook-form';
 import { useProduct } from '../Context/Product.context.jsx';
 import { useCategoryProducts } from '../Context/CategoryProducts.context.jsx';
 import { Navigate } from 'react-router-dom';
-
-const style = {
-    position: "fixed",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3
-};
 
 function UpdateProduct() {
 
@@ -26,7 +11,6 @@ function UpdateProduct() {
     const { updateProduct, product } = useProduct();
     const { Category_products } = useCategoryProducts();
     const [selectedCategory, setSelectedCategory] = useState(null);
-    const [formData, setFormData] = useState({});
 
     const customStyles = {
         control: (provided, state) => ({
@@ -72,10 +56,6 @@ function UpdateProduct() {
         updateProduct(values)
     });
 
-    const onCancel = () => {
-        setFormData({})
-    };
-
     const options = Category_products
         .filter(category => category.State)
         .map(category => ({
@@ -85,7 +65,6 @@ function UpdateProduct() {
 
     return (
         <form onSubmit={onSubmit}>
-
             <div className="control">
                 <div className="form-group col-md-6">
                     <label htmlFor="Name_Products" className="form-label">
@@ -170,7 +149,38 @@ function UpdateProduct() {
                         </p>
                     )}
                 </div>
+                <div className="form-group col-md-6">
+                    <label htmlFor="Image" className="form-label">
+                        Imagen: <strong>*</strong>
+                    </label>
+                    <input
+                        {...register("Image", {
+                            required: "La imagen es obligatorio",
+                            validate: (value) => {
+                                if (!value[0]) {
+                                    return 'Por favor, selecciona una imagen.';
+                                }
 
+                                const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+                                const fileExtension = value[0].name
+                                    .slice(((value[0].name.lastIndexOf(".") - 1) >>> 0) + 2)
+                                    .toLowerCase();
+
+                                if (!allowedExtensions.includes(fileExtension)) {
+                                    return 'Formato de imagen no permitido. Utiliza archivos JPG, JPEG, PNG o GIF.';
+                                }
+                            },
+                        })}
+                        type="file"
+                        placeholder='Imagen del producto'
+                        className="form-control"
+                    />
+                    {errors.Image && (
+                        <p className="text-red-500">
+                            {errors.Image.message}
+                        </p>
+                    )}
+                </div>
             </div>
 
             <div className="buttonconfirm">
@@ -180,13 +190,6 @@ function UpdateProduct() {
                         type="submit"
                     >
                         Confirmar
-                    </button>
-                    <button
-                        className="btn btn-primary"
-                        onClick={onCancel}
-                        type="button"
-                    >
-                        Cancelar
                     </button>
                 </div>
             </div>

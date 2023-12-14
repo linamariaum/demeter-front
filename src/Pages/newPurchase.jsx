@@ -219,7 +219,7 @@ function NewPurchase() {
                   <div className=''>
                     <label>
                       Cantidad:
-                      <input className="custom-input" type="text" {...register("Lot",{
+                      <input className="custom-input" type="number" {...register("Lot",{
                          required: 'Este campo es obligatorio',
                          validate: {
                            isDouble: (value) => {
@@ -235,8 +235,7 @@ function NewPurchase() {
                              }
                            },
                          },
-                      })}
-                      />
+                      })} />
 
 
                       {/* <input

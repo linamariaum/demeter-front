@@ -208,7 +208,7 @@ function RolePage() {
                                                                         </button>
                                                                     </div>
                                                                 ) : (
-                                                                    "El rol tiene todos los permisos."
+                                                                    "El administrador tiene todos los permisos."
                                                                 )}
                                                             </td>
                                                             <td
@@ -267,7 +267,7 @@ function RolePage() {
                                                                         </button>
                                                                     </div>
                                                                 ) : (
-                                                                    "No hay acciones"
+                                                                    "El administrador no tiene acciones"
                                                                 )}
                                                             </td>
                                                         </tr>

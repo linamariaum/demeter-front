@@ -125,7 +125,7 @@
 .text-city{
   position: relative;
   right: 117px;
-}
+}    
 
 @media screen and (max-width: 1366px)  and (min-width: 786px)  {
   .position-shop {

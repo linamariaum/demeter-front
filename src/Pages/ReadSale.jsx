@@ -78,7 +78,7 @@ function ReadSale() {
                     </div>
 
                     <div className="mb-4">
-                        <p>SubTotal: {total} Total: {total}</p>
+                        <p>Total: {total}</p>
                     </div>
                 </form>
                 

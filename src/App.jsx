@@ -34,7 +34,6 @@ import ResetPassword from './Pages/ResetPassword.jsx'
 import NewPassword from './Pages/NewPassword.jsx'
 import NewPurchase from './Pages/newPurchase.jsx'
 import ProductPage from './Pages/ProductPage.jsx'
-import EditProfile from './Pages/EditProfilePage.jsx'
 import Alert from './Pages/Alert.jsx'
 import Instruction from './Pages/Instruction.jsx'
 import ProductDetails from './Pages/ProductDetails.jsx'
@@ -44,8 +43,11 @@ import Sales from './Pages/sales'
 // Menu & Header
 import Navbar from './Components/Navbar.jsx'
 import Header from './Components/Header.jsx'
+import ErrorBoundary from './Components/ErrorBoundary.jsx'
+import { useEffect, useRef } from 'react'
 
 function App() {
+
   return (
     <BrowserRouter>
       <Role>
@@ -64,30 +66,32 @@ function App() {
                                 <Supplier>
                                   <Header />
                                   <Navbar />
-                                  <Routes>
-                                    <Route path='/' element={<Login />} />
-                                    <Route path='/resetPassword' element={<ResetPassword />} />
-                                    <Route path='/newPassword/:idUser' element={<NewPassword />} />
-                                    <Route element={<ProtectedRoute />}>
-                                      <Route path='/dashboard' element={<DashBoard />} />
-                                      <Route path='/setting' element={<RolePage />} />
-                                      <Route path='/user' element={<UserPage />} />
-                                      <Route path='/category_supplies' element={<SuppliesCategoryPage />} />
-                                      <Route path='/supplies' element={<SuppliesPage />} />
-                                      <Route path='/supplier' element={<SupplierPage />} />
-                                      <Route path='/shopping' element={<ShoppingPage />} />
-                                      <Route path='/shop' element={<NewPurchase />} />
-                                      <Route path='/category_product' element={<ProductCategoryPage />} />
-                                      <Route path='/product' element={<ProductPage />} />
-                                      <Route path='/waiter' element={<WaiterPage />} />
-                                      <Route path='/alert' element={<Alert />} />
-                                      <Route path='/edit_profile' element={<EditProfile />} />
-                                      <Route path='/instructions' element={<Instruction />} />
-                                      <Route path='/create_product' element={<ProductDetails />} />
-                                      <Route path='/sale' element={<ViewSales></ViewSales>} />
-                                      <Route path='/sales' element={<Sales />} />
-                                    </Route>
-                                  </Routes>
+                                  <ErrorBoundary>
+                                    <Routes>
+                                      <Route path='/' element={<Login />} />
+                                      <Route path='/resetPassword' element={<ResetPassword />} />
+                                      <Route path='/newPassword/:idUser' element={<NewPassword />} />
+                                      <Route element={<ProtectedRoute />}>
+
+                                        <Route path='/dashboard' element={<DashBoard />} />
+                                        <Route path='/setting' element={<RolePage />} />
+                                        <Route path='/user' element={<UserPage />} />
+                                        <Route path='/category_supplies' element={<SuppliesCategoryPage />} />
+                                        <Route path='/supplies' element={<SuppliesPage />} />
+                                        <Route path='/supplier' element={<SupplierPage />} />
+                                        <Route path='/shopping' element={<ShoppingPage />} />
+                                        <Route path='/shop' element={<NewPurchase />} />
+                                        <Route path='/category_product' element={<ProductCategoryPage />} />
+                                        <Route path='/product' element={<ProductPage />} />
+                                        <Route path='/waiter' element={<WaiterPage />} />
+                                        <Route path='/alert' element={<Alert />} />
+                                        <Route path='/instructions' element={<Instruction />} />
+                                        <Route path='/create_product' element={<ProductDetails />} />
+                                        <Route path='/sale' element={<ViewSales></ViewSales>} />
+                                        <Route path='/sales' element={<Sales />} />
+                                      </Route>
+                                    </Routes>
+                                  </ErrorBoundary>
                                 </Supplier>
                               </ProductProvider>
                             </ProductCategoriesProvider>

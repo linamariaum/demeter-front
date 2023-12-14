@@ -73,9 +73,9 @@ function Bill() {
     }
 
     const updateTotal = () => {
-        const newTotal = newDetails.reduce((acc, item) => {
-            const product = AllProducts.find(product => product.ID_Product === item.Product_ID);
-            return acc + (product.Price_Product * item.Lot);
+            const newTotal = newDetails.reduce((acc, item) => {
+                const product = AllProducts.find(product => product.ID_Product === item.Product_ID);
+                return acc + (product.Price_Product * item.Lot);
         }, 0);
         fetchGain(newTotal);
     }
@@ -145,8 +145,8 @@ function Bill() {
                     </table>
                 </div>
 
-                <div className="mb-4">
-                    <p>SubTotal: {total} Total: {total}</p>
+                <div className="mb-4 p-3">
+                    <p>Total: {total}</p>
                 </div>
             </form>
 

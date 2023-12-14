@@ -122,15 +122,19 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
               <div className="buttonconfirm">
                 <div className="mb-3">
                   <button
-                    className="btn btn-primary"
+                    className="btn btn-primary mr-5"
+                    type="submit"
+                    title='Se guarda la información recien ingresado en el sistema.'
+                  >
+                    Confirmar
+                  </button>
+                  <button
+                    className="btn btn-danger"
                     onClick={onCancel}
                     type="button"
-                    title="Cancelar el rol no creado actualemente en el sistema"
+                    title='Se cancela la información recien ingresada en el sistema.'
                   >
                     Cancelar
-                  </button>
-                  <button className="btn btn-primary mr-5" type="submit">
-                    Confirmar
                   </button>
                 </div>
               </div>

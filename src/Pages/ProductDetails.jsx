@@ -7,7 +7,7 @@ import { useProduct } from '../Context/Product.context.jsx'
 
 export default function ProductDetails() {
 
-    const { product, getProducts, toggleSupplyStatus, getCurrentProduct ,CurrentProd  } = useProduct();
+    const { product, getProducts, getCurrentProduct, CurrentProd } = useProduct();
     
 
     return (

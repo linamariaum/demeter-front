@@ -10,7 +10,7 @@ export const getProducts = (id) => axios.get(`/product/${id}`);
 export const getProductSale = (id) => axios.get(`/Singleproduct/${id}`);
 export const getAllProduct = () => axios.get(`/AllProducts`);
 // Detalles
-export const getDetailProductRequest = (ID_Product) => axios.get(`/product_detail/${ID_Product}`)
-export const getDetailProductRequest2 = (ID_Product) => axios.get(`/product_detail2/${ID_Product}`)
-export const createDetailPRequest = (datilsP) => axios.post(`/add_details`, datilsP)
-export const deleteDetailProductRequest = (ID_ProductDetail) => axios.get(`/details/${ID_ProductDetail}`)
+export const getDetailProductRequest = (ID_Product) => axios.get(`/product_detail/${ID_Product}`);
+export const getDetailProductRequest2 = (ID_Product) => axios.get(`/product_detail2/${ID_Product}`);
+export const createDetailPRequest = (datilsP) => axios.post(`/add_details`, datilsP);
+export const deleteDetailProductRequest = (ID_ProductDetail) => axios.get(`/details/${ID_ProductDetail}`);

@@ -36,7 +36,6 @@ function WaiterPage() {
     );
     const itemsForPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const [authorized, setAuthorized] = useState(true);
 
     const navigate = useNavigate();
 
@@ -47,12 +46,13 @@ function WaiterPage() {
                 setAllWaiter(users);
             } catch (error) {
                 console.error(error);
-                setAuthorized(false);
+                console.log('Mostrar autenticacion useE', authorized);
             }
         };
         fetchData();
         setCurrentPage(1);
     }, [getWaiters]);
+
 
     const navigateToCreateWaiter = () => {
         setIsModalOpen(true);
@@ -125,10 +125,8 @@ function WaiterPage() {
 
     return (
         <section className="pc-container">
-            <div className="pcoded-content">
-                {!authorized ? (
-                    <AuthorizationModal onClose={closeModal} />
-                ) : (
+                <div className="pcoded-content">
+
                     <div className="row w-100">
                         <div className="col-md-12">
                             <div className=" w-100 col-sm-12">
@@ -257,8 +255,8 @@ function WaiterPage() {
                             </Typography>
                         </Box>
                     </div>
-                )}
-            </div>
+
+                </div>
 
             {isModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -277,8 +275,6 @@ function WaiterPage() {
                     </div>
                 </div>
             )}
-
-
         </section>
     )
 }
