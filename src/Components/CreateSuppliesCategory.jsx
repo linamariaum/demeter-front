@@ -16,6 +16,12 @@ const style = {
     pt: 2,
     px: 4,
     pb: 3,
+    '@media (max-width: 770px)': {
+        width: '75%',
+    },
+    '@media (max-width: 315px)': {
+        width: '240px',
+    },
 };
 
 function CreateCategory_supplies({
@@ -133,11 +139,15 @@ function CreateCategory_supplies({
                                                     },
                                                     setValueAs: (value) =>
                                                         value
-                                                            .trim() 
-                                                            .replace(/\s+/g, ' ') 
-                                                            .toLowerCase() 
-                                                            .replace(/^(.)/, (match) => match.toUpperCase()), 
+                                                            .trim()
+                                                            .replace(/\s+/g, ' ')
+                                                            .toLowerCase()
+                                                            .replace(/^(.)/, (match) => match.toUpperCase()),
                                                 })}
+                                                maxLength={30}
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                                                }}
                                                 type="text"
                                                 className="form-control"
                                             />
@@ -159,7 +169,7 @@ function CreateCategory_supplies({
                                                 Confirmar
                                             </button>
                                             <button
-                                                className="btn btn-primary"
+                                                className="btn btn-danger"
                                                 onClick={onCancel}
                                                 type="submit"
                                                 title="Este botón sirve para cerrar la ventana modal sin guardar la información."

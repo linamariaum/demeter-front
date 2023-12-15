@@ -127,7 +127,7 @@
   right: 117px;
 }    
 
-@media screen and (max-width: 1366px)  and (min-width: 786px)  {
+/* @media screen and (max-width: 1366px)  and (min-width: 786px)  {
   .position-shop {
     width: 102%; 
   }
@@ -143,15 +143,13 @@
   }
 
   .card{
-  width: 57%;
+  width: 100%;
   position: relative;
-  left: 220px;
-  top: 70px;
   }
 
   .pc-sidebar{
     width: 16%;
-  }
+  } */
 
   /* .custom-control{
     width: 10%;
@@ -166,10 +164,10 @@
     margin-right: 18px;
   }  */
 
-  .buton-supplies{
+  /* .buton-supplies{
     width: 30%;
   }
-}
+} */
 
 
 .pagination-container {

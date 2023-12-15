@@ -16,7 +16,13 @@ const style = {
     pt: 2,
     px: 4,
     pb: 3,
-};
+    '@media (max-width: 770px)': {
+      width: '75%',
+    },
+    '@media (max-width: 315px)': {
+      width: '240px',
+    },
+  };
 
 function CreateCategory_products({
     onDefaultSubmit = null,
@@ -131,11 +137,15 @@ function CreateCategory_products({
                                                     },
                                                     setValueAs: (value) =>
                                                         value
-                                                            .trim() 
+                                                            .trim()
                                                             .replace(/\s+/g, ' ')
                                                             .toLowerCase()
                                                             .replace(/^(.)/, (match) => match.toUpperCase()),
                                                 })}
+                                                maxLength={30}
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                                                }}
                                                 type="text"
                                                 className="form-control"
                                             />

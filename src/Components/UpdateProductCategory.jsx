@@ -16,6 +16,12 @@ const style = {
   pt: 2,
   px: 4,
   pb: 3,
+  '@media (max-width: 770px)': {
+    width: '75%',
+  },
+  '@media (max-width: 315px)': {
+    width: '240px',
+  },
 };
 
 function UpdateProductCategory({
@@ -46,37 +52,37 @@ function UpdateProductCategory({
 
   function removeAccentsAndSpaces(str) {
     return str
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f\s]/g, '');
-}
-
-const onSubmit = handleSubmit(async (values) => {
-  if (productCategoryToEdit) {
-    const normalizedInputName = removeAccentsAndSpaces(values.Name_ProductCategory);
-    const normalizedExistingNames = Category_products
-      .filter(category => category.ID_ProductCategory !== productCategoryToEdit.ID_ProductCategory)
-      .map(category => removeAccentsAndSpaces(category.Name_ProductCategory));
-
-    const isNameDuplicate = normalizedExistingNames.includes(normalizedInputName);
-
-    if (isNameDuplicate) {
-      setError('Name_ProductCategory', {
-        type: 'manual',
-        message: 'El nombre de la categoría ya existe.',
-      });
-      return;
-    }
-
-    const productCategory = { ...productCategoryToEdit, ...values };
-    try {
-      await updateCategory_products(productCategory.ID_ProductCategory, productCategory);
-      setOpen(false);
-    } catch (error) {
-      console.error('Error al actualizar la categoría de producto', error);
-    }
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f\s]/g, '');
   }
-});
+
+  const onSubmit = handleSubmit(async (values) => {
+    if (productCategoryToEdit) {
+      const normalizedInputName = removeAccentsAndSpaces(values.Name_ProductCategory);
+      const normalizedExistingNames = Category_products
+        .filter(category => category.ID_ProductCategory !== productCategoryToEdit.ID_ProductCategory)
+        .map(category => removeAccentsAndSpaces(category.Name_ProductCategory));
+
+      const isNameDuplicate = normalizedExistingNames.includes(normalizedInputName);
+
+      if (isNameDuplicate) {
+        setError('Name_ProductCategory', {
+          type: 'manual',
+          message: 'El nombre de la categoría ya existe.',
+        });
+        return;
+      }
+
+      const productCategory = { ...productCategoryToEdit, ...values };
+      try {
+        await updateCategory_products(productCategory.ID_ProductCategory, productCategory);
+        setOpen(false);
+      } catch (error) {
+        console.error('Error al actualizar la categoría de producto', error);
+      }
+    }
+  });
 
   const onCancel = () => {
     setOpen(false);
@@ -134,10 +140,14 @@ const onSubmit = handleSubmit(async (values) => {
                           setValueAs: (value) =>
                             value
                               .trim()
-                              .replace(/\s+/g, ' ') 
-                              .toLowerCase() 
+                              .replace(/\s+/g, ' ')
+                              .toLowerCase()
                               .replace(/^(.)/, (match) => match.toUpperCase()),
                         })}
+                        maxLength={30}
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                        }}
                         type="text"
                         className="form-control"
                       />
