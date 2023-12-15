@@ -663,3 +663,9 @@ strong {
 .estado-icon.inactive {
     color: #012200;
 }
+
+.permissions {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { getRolesRequest, getRoleRequest, createRoleRequest, toggleRoleRequest, updateRoleRequest, deleteRoleRequest, AddModuleToRole, AddMultipleModuleAndRole, AddMultipleModuleAndRoleAndDeleteIfExists } from '../Api/Role.request.js'
+import { getRolesRequest, getRoleRequest, createRoleRequest, toggleRoleRequest, updateRoleRequest, AddModuleToRole, AddMultipleModuleAndRole, AddMultipleModuleAndRoleAndDeleteIfExists } from '../Api/Role.request.js'
 
 export const RoleContext = createContext();
 
@@ -65,16 +65,6 @@ export const Role = ({ children }) => {
             console.error(error);
         }
     }
-
-    const deleteRole = async (id) => {
-        try {
-            const res = await deleteRoleRequest(id)
-            if (res.status === 204) setRole(role.filter(rol => rol.ID_Role !== id))
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
     
     const addModuleToRole = async (Role) => {
         try {
@@ -118,7 +108,6 @@ export const Role = ({ children }) => {
                 createRole,
                 toggleRoleStatus,
                 updateRole,
-                deleteRole,
                 addModuleToRole,
                 addMultipleModuleAndRole,
                 addMultipleModuleAndRoleAndDeleteIfExists

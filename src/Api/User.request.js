@@ -9,11 +9,6 @@ export const updateUserRequest = (ID_User, user) => axios.put(`/user/${ID_User}`
 export const deleteUserRequest = (ID_User) => axios.delete(`/user/${ID_User}`);
 export const existUserByEmailOrIdRequest = (document, email, userType) => axios.get(`/existUserByEmailOrId/${document}/${email}/${userType}`);
 
-// --------------------------- Edit Profile --------------------------- //
-
-export const updateUserLoginRequest = (ID_User, user) => axios.put(`/edit_profile`, user);
-export const updatePasswordLoginRequest = (ID_User, user) => axios.put(`/change_password`, user);
-
 // --------------------------- Mesero --------------------------- //
 
 export const getWaitersRequest = () => axios.get(`waiter`);

@@ -201,7 +201,11 @@ function RolePage() {
                                                                         <button
                                                                             title="Para poder remover o asignar permisos a un rol ya creado con anterioridad."
                                                                             type="button"
-                                                                            className="btn btn-icon btn-outline-dark btn-sm"
+                                                                            className={`btn btn-icon btn-outline-dark btn-sm ${!rol.State
+                                                                                ? "text-gray-400 cursor-not-allowed"
+                                                                                : ""
+                                                                                }`}
+                                                                            disabled={!rol.State}
                                                                             onClick={() => AssignPermission(rol.ID_Role)}
                                                                         >
                                                                             <Assignment />

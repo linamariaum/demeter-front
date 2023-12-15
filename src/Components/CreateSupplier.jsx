@@ -235,7 +235,7 @@ export default function CreateSupplier({
                             {...register("Type_Document", {
                               required: "El tipo de documento es requerido"
                             })}
-                            className="form-select"
+                            className="form-control"
                             onChange={() => {
                               setValue("Document", "")
                             }}
