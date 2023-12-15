@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getProductsRequest, getProductByCategoryRequest, createProductsRequest, statusProductsRequest, updateProductsRequest, deleteProductsRequest } from "../Api/Product.request.js"
+import { getProductsRequest, getProductByCategoryRequest, createProductsRequest, statusProductsRequest, updateProductsRequest, deleteProductsRequest, getProductByIdRequest } from "../Api/Product.request.js"
 import { getProductSale, getAllProduct, getDetailProductRequest, getDetailProductRequest2, createDetailPRequest, deleteDetailProductRequest } from "../Api/Product.request.js" //Detalles
 import useLocaStorage from "../hooks/useLocaStorage.jsx";
 
@@ -99,7 +99,6 @@ export function Product({ children }) {
     const getDetailProduct = async (id) => {
         try {
             const res = await getDetailProductRequest(id);
-            console.log("res", res)
             setDetailP(res.data);
         } catch (error) {
             console.error(error);
@@ -151,6 +150,16 @@ export function Product({ children }) {
         }
     }
 
+    const getProductById = async (id) => {
+        try {
+            const res = await getProductByIdRequest(id);
+            return res.data
+        } catch (error) {
+            console.log("error", error.message)
+            return {}
+        }
+    }
+
     const getwholeProducts = async () => {
         try {
             const res = await getAllProduct();
@@ -183,8 +192,8 @@ export function Product({ children }) {
             CurrentProd,
             fetchProduct,
             getProduct,
-            getwholeProducts
-
+            getwholeProducts,
+            getProductById
         }}>
             {children}
         </ProductContext.Provider>

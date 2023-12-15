@@ -586,6 +586,10 @@ footer .b-footer .bottom-tag {
 
 /* Codigo de css propio para las modal */
 
+strong {
+    color: #ff0000;
+}
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -650,4 +654,12 @@ footer .b-footer .bottom-tag {
     margin-top: -10px;
     margin-bottom: -10px;
     margin-left: 105px;
+}
+
+.estado-icon.active {
+    color: white;
+}
+
+.estado-icon.inactive {
+    color: #012200;
 }
