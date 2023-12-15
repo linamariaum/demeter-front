@@ -71,7 +71,7 @@ export default function CreateSupplier({
       case "Document": {
 
         value = target.replace(/[^0-9]/g, '').replace(/\s/g, "")
-        if (getValues().Type_Document === "CE") {
+        if (getValues().Type_Document === "PB") {
           value = target.replace(/\s/g, "")
         }
         break
@@ -80,7 +80,8 @@ export default function CreateSupplier({
       case "Name_Business":
       case "City":
       case "Name_Supplier": {
-        value = target.replace(/\s+/g, " ").toUpperCase()
+        const sanitizedValue = target.replace(/^\s+/g, "").replace(/\s{2,}/g, " ")
+        value = sanitizedValue.slice(0, 21).toUpperCase();    
         break
 
       }

@@ -1,183 +1,235 @@
 .facture {
-    width: 100%;
-    height: 560px;
-    background-color: #fff;
-    border-radius: 1vh;
-    border: 0.5px solid  gray;
-    margin-left: 10px;
-    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 560px;
+  background-color: #fff;
+  border-radius: 1vh;
+  border: 0.5px solid  gray;
+  margin-left: 10px;
+  box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.2);
 /* box-shadow: 10px 10px #0057ff; */
 }
 
 .position-facture{
-    position: relative;
-    left: 50px;
-    top: 60px;
-    max-height: 600px;
-   
+  /* position: relative;
+  left: 50px; */
+  /* top: 60px;
+  max-height: 600px; */
+  margin-top: 155px;
+ 
+}
+
+.intento{
+width: 900px;
 }
 
 .position-table {
-    padding-top: 3% ;
-    height: 300px;
+  padding-top: 3% ;
+  min-height: 100px;
+  /* max-height: ; */
 }
 
 .custom-input-facture{
-    width: 180px;
-    height: 35px;
-    border: 1px solid black; 
-    border-radius: 4px;
-    margin-left: 3px ;
+  width: 180px;
+  height: 35px;
+  border: 1px solid black; 
+  border-radius: 4px;
+  margin-left: 3px ;
 }
 
 .position-shop{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-right: 9%;
-    height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 9%;
+  height: 100vh;
 }
 
 .custom-select{
-    padding-left: 50px;
-    bottom: 25px;
-    border-radius: 4px;
+  padding-left: 50px;
+  bottom: 25px;
+  border-radius: 4px;
 }
 
 .custom-select:focus{
-    outline: none; 
-    border-color: #FD7B15;
+  outline: none; 
+  border-color: #FD7B15;
 }
 
 .select-measure {
-    padding: 10px;
-    font-size: 15px;
-    width: 140px; 
-    height: 34px; 
-    border: 1px solid black; 
-    border-radius: 4px;
-    text-align: center;
-    max-width: 140px; /* Altura máxima del elemento select */
-    overflow-y: auto; 
-  }
+  padding: 10px;
+  font-size: 15px;
+  width: 200px; 
+  height: 34px; 
+  border: 1px solid black; 
+  border-radius: 4px;
+  text-align: center;
+  max-width: 140px; 
+  overflow-y: auto; 
+}
 
 .select-measure:focus{
-    outline: none; 
-    border-color: #FD7B15;
+  outline: none; 
+  border-color: #FD7B15;
 }
 
-
-
-.deleteText {
-    font-size: 20px;
+.input-width{
+width: 220px;
+height: 38px; 
+border: 1px solid black; 
+border-radius: 4px;
+text-align: center;
 }
-
-.custom-input {
-    border: 1px solid black;
-    border-radius: 4px;
-    height: 34px; 
-    padding: 5px;
-    margin-left: 12px; 
-  }
-  
-  .custom-input:focus {
-    outline: none; 
-    border-color: #FD7B15;
-  }
-
-  .custom-input-facture{
-    border: 1px solid black;
-    border-radius: 4px;
-    height: 34px; 
-    width: 180px;
-    margin-left: 40px;
-    margin-top: 10px;
-  }
-  .custom-input-facture:focus {
-    outline: none; 
-    border-color: #FD7B15;
-  }
-  .table-shopping{
-    height: 20%;
-  }
-  
-  .password-toggle-button {
-    position: relative;
-    right: 30px;
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-  }
-
-.supplies{
-    position: relative;
-    bottom: 70px;
-    left:130px;
-}
-
-.tamañoS{
-  width: 82%;
-  position: absolute;
-  right: 51px;
-}
-
-.text-city{
-  position: relative;
-  right: 117px;
-}    
-
-/* @media screen and (max-width: 1366px)  and (min-width: 786px)  {
-  .position-shop {
-    width: 102%; 
-  }
-  
-  .custom-input {
-    width: 80%; 
-  }
-
-  .position-facture{
-   width: 28%;
-   position: relative;
-   right: 10px;
-  }
-
-  .card{
-  width: 57%;
-  position: relative;
-  left: 220px;
-  top: 70px;
-  }
-
-  .pc-sidebar{
-    width: 16%;
-  } */
-
-  /* .custom-control{
-    width: 10%;
-  } */
-
-  /* .pc-link{
-    width: 100%;
-  }
-
-   .pc-navbar{
-    width: 100%;
-    margin-right: 18px;
-  }  */
-
-  /* .buton-supplies{
-    width: 30%;
-  }
+/* .select-supplies{
+width: 140px; 
+  height: 34px; 
+  border: 1px solid black; 
 } */
 
 
+.deleteText {
+  font-size: 20px;
+}
+
+.custom-input {
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 34px; 
+  padding: 5px;
+  margin-left: 12px; 
+}
+
+.custom-input:focus {
+  outline: none; 
+  border-color: #FD7B15;
+}
+
+.custom-input-facture{
+  border: 1px solid black;
+  border-radius: 4px;
+  height: 34px; 
+  width: 180px;
+  margin-left: 40px;
+  margin-top: 10px;
+}
+.custom-input-facture:focus {
+  outline: none; 
+  border-color: #FD7B15;
+}
+.table-shopping{
+  height: 20%;
+}
+
+.password-toggle-button {
+  position: relative;
+  right: 30px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.supplies{
+  position: relative;
+  bottom: 70px;
+  left:130px;
+}
+
+/* @media screen and (max-width: 600px) { */
+/* Agrega tus estilos específicos para pantallas pequeñas aquí */
+/* .position-shop {
+  background-color: #fff; */
+  /* Por ejemplo, puedes cambiar la disposición de los elementos para adaptarse mejor a pantallas pequeñas */
+  /* display: block; */
+/* }
+.pc-sidebar .navbar-content  {
+  display: none;
+}
+
+.header.pc-header::after{
+  display: none;
+}
+
+} */
+
+/* @media screen and (max-width: 1366px)  and (min-width: 786px)  {
+.position-shop {
+  width: 102%; 
+}
+
+.custom-input {
+  width: 80%; 
+}
+
+.position-facture{
+ width: 28%;
+ position: relative;
+ right: 10px;
+}
+
+.card{
+width: 57%;
+position: relative;
+left: 220px;
+top: 70px;
+}
+
+.pc-sidebar{
+  width: 16%;
+} */
+
+/* .custom-control{
+  width: 10%;
+} */
+
+/* .pc-link{
+  width: 100%;
+}
+
+ .pc-navbar{
+  width: 100%;
+  margin-right: 18px;
+}  */
+
+/* .buton-supplies{
+  width: 30%;
+}
+} */
+
+/* @media (max-width: 600px) {
+.position-shop{
+  background-color: aqua;
+  width: 70%;
+}
+
+} */
+
+@media (max-width: 1179px) {
+.intento {
+    width: 1080px;
+    height: 700px;
+}
+.input-width{
+  width: 84px;
+}
+
+.position-facture{
+  width: 310px;
+}
+
+.position-boton{
+  width: 100px;
+  height: 40px;
+  position: relative;
+  top: 50px;
+  right: 100px;
+}
+}
 .pagination-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+display: flex;
+justify-content: center;
+margin-top: 20px;
 }
 
 .pagination {
-  margin-top: 10px;
+margin-top: 10px;
 }

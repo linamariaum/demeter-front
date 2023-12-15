@@ -102,12 +102,12 @@ const CreateDetailProduct = () => {
           <input
             {...register("Lot_ProductDetail", {
               required: "La cantidad es obligatoria",
-              validate: (value) => {
-                const parsedValue = parseFloat(value.replace(',', '.')); // Reemplaza la coma por un punto antes de convertir a número
-                if (isNaN(parsedValue) || !isFinite(parsedValue)) {
-                  return 'El valor debe ser un número válido.';
-                }
-              },
+              // validate: (value) => {
+              //   const parsedValue = parseFloat(value.replace(',', '.')); // Reemplaza la coma por un punto antes de convertir a número
+              //   if (isNaN(parsedValue) || !isFinite(parsedValue)) {
+              //     return 'El valor debe ser un número válido.';
+              //   }
+              // },
             })}
             type="text"
             placeholder='Cantidad del insumo'

@@ -3,7 +3,6 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 // Icons
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
 import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
 import { Assignment } from "@mui/icons-material";
 
 // Diseño
@@ -12,11 +11,11 @@ import "../css/landing.css";
 
 // Context
 import { useRole } from "../Context/Role.context.jsx";
+import { useUser } from '../Context/User.context.jsx';
 
 // Componentes
 import CreateRole from "../Components/CreateRole.jsx";
 import UpdateRole from "../Components/UpdateRole.jsx";
-// import DeleteRole from "../Components/DeleteRole.jsx";
 import AssignPermissions from "../Components/AssignPermissions.jsx";
 
 // Paginado
@@ -26,13 +25,12 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
 function RolePage() {
-    const { role, getRoles, toggleRoleStatus, deleteRole } = useRole();
+    const { role, getRoles, toggleRoleStatus } = useRole();
+    const { getUsers } = useUser()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalOpenPrmissions, setIsModalOpenPrmissions] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [roleToEdit, setRoleToEdit] = useState(null);
-    const [roleToDelete, setRoleToDelete] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
 
     const roleIdRef = useRef(null)
@@ -45,7 +43,8 @@ function RolePage() {
 
     useEffect(() => {
         getRoles(),
-            setCurrentPage(1);
+        getUsers();
+        setCurrentPage(1);
     }, []);
 
     const navigateToCreateRole = () => {
@@ -65,24 +64,6 @@ function RolePage() {
     const handleEdit = (role) => {
         setRoleToEdit(role);
         setIsEditModalOpen(true);
-    };
-
-    const handleDelete = (role) => {
-        setRoleToDelete(role);
-        setIsDeleteModalOpen(true);
-    };
-
-    const confirmDelete = () => {
-        if (roleToDelete) {
-            deleteRole(roleToDelete.ID_Role);
-            setRoleToDelete(null);
-            setIsDeleteModalOpen(false);
-        }
-    };
-
-    const cancelDelete = () => {
-        setRoleToDelete(null);
-        setIsDeleteModalOpen(false);
     };
 
     useEffect(() => {
@@ -241,19 +222,8 @@ function RolePage() {
                                                                             <BiEdit />
                                                                         </button>
                                                                         <button
-                                                                            onClick={() => handleDelete(rol)}
-                                                                            className={`ml-1 btn btn-icon btn-danger ${!rol.State
-                                                                                ? "text-gray-400 cursor-not-allowed"
-                                                                                : ""
-                                                                                }`}
-                                                                            disabled={!rol.State}
-                                                                            title="Para eliminar el rol de forma permanente del sistema."
-                                                                        >
-                                                                            <AiFillDelete />
-                                                                        </button>
-                                                                        <button
                                                                             type="button"
-                                                                            title="Para cambiar el estado del rol seleccionado en el sistema."
+                                                                            title="Para cambiar el estado del rol seleccionado en el sistema. Sino te cambia asegurate de que no hayan usuarios con el rol."
                                                                             className={`ml-1 btn btn-icon btn-success ${statusRoles}`}
                                                                             onClick={() =>
                                                                                 toggleRoleStatus(rol.ID_Role)
@@ -362,9 +332,6 @@ function RolePage() {
                     </div>
                 </div>
             )}
-            {/* {isDeleteModalOpen && (
-                <DeleteRole onClose={cancelDelete} onDelete={confirmDelete} />
-            )} */}
         </section>
     );
 }

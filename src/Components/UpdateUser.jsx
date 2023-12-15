@@ -243,34 +243,6 @@ function UpdateUser({ onClose, userToEdit }) {
                                             </p>
                                         )}
                                     </div>
-
-                                    <div className="form-group col-md-6">
-                                        <label htmlFor="Role_ID" className="form-label">
-                                            Rol: <strong>*</strong>
-                                        </label>
-                                        <Select
-                                            options={[
-                                                ...rolOpcions
-                                            ]}
-                                            {...register("Role_ID")}
-                                            value={rolOpcions.find(option => option.value === selectedRole)}
-                                            onChange={(selectedRole) => setSelectedRole(selectedRole)}
-                                            styles={customStyles}
-                                                className='form-selects'
-                                                theme={(theme) => ({
-                                                    ...theme,
-                                                    colors: {
-                                                        ...theme.colors,
-                                                        primary: '#e36209',
-                                                    },
-                                                })}
-                                        />
-                                        {errors.Role_ID && (
-                                            <p className="text-red-500">
-                                                {errors.Role_ID.message}
-                                            </p>
-                                        )}
-                                    </div>
                                 </div>
 
                                 <div className="buttonconfirm">

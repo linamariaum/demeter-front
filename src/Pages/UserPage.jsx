@@ -116,7 +116,8 @@ function UserPage() {
         setAllUsers((prevUser) =>
             prevUser.map((users) =>
                 users.ID_User === id ? { ...users, State: !users.State } : users
-            ))
+            )
+        )
     }
 
     const handlePageChange = (event, value) => {
