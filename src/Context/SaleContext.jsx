@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react'
 import { Createsale, CreatesaleDetail, GetDetails, UpdSale, getSale, pay, GetoneSale, CreateManysaleDetails, deleteDetailSale } from '../Api/sale.request';
-import { useProduct } from './Product.context.jsx'
 import React from 'react';
 export const SaleContext = createContext();
 
@@ -20,9 +19,6 @@ export const SaleProvider = ({ children }) => {
     const [details, setDetails] = useState([]);
     const [total, setTotal] = useState([]);
     const [action, setAction] = useState([]) // 1: Create 2: Update
-    const [getDetailProduct2] = useProduct();
-
-
 
     const Create = async (waiter) => {
         try {
@@ -47,7 +43,6 @@ export const SaleProvider = ({ children }) => {
     const CreateDetail = async (data) => {
         try {
             const res = await CreatesaleDetail(data);
-            getDetailProduct2();
             return (res)
         } catch (error) {
             console.log(error)
@@ -58,7 +53,6 @@ export const SaleProvider = ({ children }) => {
         try {
             const res = await CreateManysaleDetails(data);
             setnewDetails([])
-            getDetailProduct2();
             console.log(res.data)
         } catch (error) {
             console.log(error)

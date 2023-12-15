@@ -15,7 +15,7 @@ import useLocaStorage from '../hooks/useLocaStorage';
 
 
 function NewPurchase() {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
   const { createMultipleShopping } = useShoppingContext()
   const [error, setError] = useState("")
   const [selectedSupplies, setSelectedSupplies, destroy] = useLocaStorage("suppliesTable", [])
@@ -59,7 +59,20 @@ function NewPurchase() {
   //   "value": 2,
   //   "label": "Jorge"
   // }
-  const onConfirm = async ({ value, uuidv4 }) => {
+  const onConfirm = async ({ value, uuidv4, navigateToMainMenu }) => {
+
+    const condition = selectedSupplies.every(obj => Object.values(obj).every(val => !!val)) && value
+
+    if (!condition) {
+      setError("Llena todos los campos")
+
+      setTimeout(() => {
+        setError("")
+      }, 1000)
+
+      return
+    }
+
     const data = selectedSupplies.map(({ ID_Supplies, ...data }) => ({
       shoppingDetails: {
         ...data,
@@ -72,11 +85,9 @@ function NewPurchase() {
       Invoice_Number: uuidv4
     }))
 
-    console.log("data", data)
-    console.log("uuidv4", uuidv4)
-
     await createMultipleShopping(data)
     destroy()
+    navigateToMainMenu()
 
   }
   const [suppliesState, setSuppliesState] = useState([{
@@ -152,7 +163,6 @@ function NewPurchase() {
     supplierRef.current = option.value
     const selectedSupplie = suppliesState.find((supply) => supply.ID_Supplies === option.value);
     setSelectedMeasure(selectedSupplie.Measure);
-
   }
 
   const onDeleteSupplie = (id) => {
@@ -187,8 +197,14 @@ function NewPurchase() {
     // setAvailableSupplies(prev => [...prev, data])
     window.location.reload()
   }
-  return (
 
+  const floatValidation = (text, type) => {
+    const newValue = text.replace(/[^0-9.]+/g, '')
+
+    console.log("newValue", newValue)
+    setValue(type, newValue)
+  }
+  return (
     <div className='position-shop'>
       <div className="flex justify-between mb-5 mx-10 mr-5 ">
         <div className="card">
@@ -219,23 +235,25 @@ function NewPurchase() {
                   <div className=''>
                     <label>
                       Cantidad:
-                      <input className="custom-input" type="number" {...register("Lot",{
-                         required: 'Este campo es obligatorio',
-                         validate: {
-                           isDouble: (value) => {
-                             const parsedValue = parseFloat(value);
-                             if (isNaN(parsedValue)) {
-                               return 'Debe ser un número positivo.';
-                             }
-                           },
-                           validRange: (value) => {
-                             const parsedValue = parseFloat(value);
-                             if (parsedValue < 0 || parsedValue > 99999999) {
-                               return 'La cantidad debe estar entre 0 y 99999999.';
-                             }
-                           },
-                         },
-                      })} />
+                      <input className="custom-input" type="number" {...register("Lot", {
+                        required: 'Este campo es obligatorio',
+                        validate: {
+                          isDouble: (value) => {
+                            const parsedValue = parseFloat(value);
+                            if (isNaN(parsedValue)) {
+                              return 'Debe ser un número positivo.';
+                            }
+                          },
+                          validRange: (value) => {
+                            const parsedValue = parseFloat(value);
+                            if (parsedValue < 0 || parsedValue > 99999999) {
+                              return 'La cantidad debe estar entre 0 y 99999999.';
+                            }
+                          },
+                        },
+                      })}
+
+                        onInput={e => floatValidation(e.target.value, "Lot")} />
 
 
                       {/* <input
@@ -284,7 +302,9 @@ function NewPurchase() {
                   <div>
                     <label className='ml-4'>
                       Precio:
-                      <input className=" custom-input  " type="number" {...register("Price_Supplier")} />
+                      <input className=" custom-input  " type="number" {...register("Price_Supplier")}
+                        onInput={e => floatValidation(e.target.value, "Price_Supplier")}
+                      />
                     </label>
                   </div>
                   <div className='flex flex-column ml-3  '>

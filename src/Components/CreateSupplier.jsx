@@ -56,12 +56,12 @@ export default function CreateSupplier({
 
   /**
    * 
-   * @param {"Email" | "Document" | "Name_Supplier" | "Name_Business" | "Phone"} type 
+   * @param {"Email" | "Document" | "Name_Supplier" | "Name_Business" | "Phone" | "City"} type 
    * @param {Object} target 
    */
   const validate = (type, target) => {
 
-    let value = "";
+    let value = target;
     switch (type) {
       case "Email": {
         value = target.replace(/\s+/g, "")
@@ -78,6 +78,7 @@ export default function CreateSupplier({
       }
 
       case "Name_Business":
+      case "City":
       case "Name_Supplier": {
         value = target.replace(/\s+/g, " ").toUpperCase()
         break
@@ -91,6 +92,7 @@ export default function CreateSupplier({
         }
         break
       }
+
       default: break
     }
     // value = value.trim()
@@ -114,9 +116,6 @@ export default function CreateSupplier({
     const isEmailDuplicate = supplier.some(
       (supplier) => supplier.Email === values.Email
     );
-    const isBusinessDuplicate = supplier.some(
-      (supplier) => supplier.Name_Business === values.Name_Business
-    );
     const isPhoneDuplicate = supplier.some(
       (supplier) => supplier.Phone === values.Phone
     );
@@ -133,14 +132,6 @@ export default function CreateSupplier({
       setError("Email", {
         type: "manual",
         message: "El correo del proveedor ya existe."
-      });
-      return;
-    }
-
-    if (isBusinessDuplicate) {
-      setError("Name_Business", {
-        type: "manual",
-        message: "La nombre de la empresa ya existe."
       });
       return;
     }
@@ -277,12 +268,7 @@ export default function CreateSupplier({
                           {...register("Document", {
                             required: "El documento es requerido",
                             validate: (value) => {
-                              const parsedValue = parseInt(value);
-                              if (
-                                isNaN(parsedValue) ||
-                                parsedValue < 10000000 ||
-                                parsedValue > 9999999999
-                              ) {
+                              if (value.length < 8 || value.length > 10) {
                                 return "El número debe tener de 8 a 10 caracteres.";
                               }
                             }

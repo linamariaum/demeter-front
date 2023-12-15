@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import Select from 'react-select';
 import { useSupplies } from "../Context/Supplies.context.jsx";
 import { useProduct } from '../Context/Product.context.jsx'
 import { useForm, Controller } from 'react-hook-form';
 
 const CreateDetailProduct = () => {
-  const { CurrentProd, createDetailP } = useProduct();
+  const { CurrentProd, createDetailP, getDetailProduct, detailP } = useProduct();
   const { supplies } = useSupplies();
   const [selectedMeasure, setSelectedMeasure] = useState('');
   const [selectedSupply, setSelectedSupply] = useState(null);
   const { control, register, handleSubmit, setError, formState: { errors }, reset, } = useForm();
+
+  useLayoutEffect(() => {
+    getDetailProduct(CurrentProd)
+  }, [])
 
   const customStyles = {
     control: (provided, state) => ({
@@ -32,7 +36,7 @@ const CreateDetailProduct = () => {
   };
 
   const suppliesOptions = supplies
-    .filter(supply => supply.State)
+    .filter(supply => supply.State && supply.Name_Supplies && detailP.some(d => d.Supply.Name_Supplies ))
     .map(supply => ({
       value: supply.ID_Supplies,
       label: supply.Name_Supplies,
@@ -51,7 +55,7 @@ const CreateDetailProduct = () => {
     values.Supplies_ID = selectedSupply.value;
     values.Product_ID = CurrentProd;
 
-    createDetailP(values)
+    // createDetailP(values)
   });
 
   return (
