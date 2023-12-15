@@ -36,7 +36,7 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="pc-sidebar">
+        <nav className="pc-sidebar ">
             <div className="navbar-wrapper">
                 <div className="m-header">
                     <button

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSupplies } from '../Context/Supplies.context';
 import StoreIcon from '@mui/icons-material/Store';
 import { useNavigate } from 'react-router-dom';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import '../css/style.css'
 import '../css/landing.css'
 
@@ -9,41 +13,48 @@ function Alert() {
   const { supplies, getSupplies } = useSupplies();
   const [lowStockSupplies, setLowStockSupplies] = useState([]);
   const navigate = useNavigate();
+  const ITEMS_PER_PAGE = 7;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     getSupplies();
   }, []);
 
-useEffect(() => {
-  // Intenta obtener los datos almacenados de localStorage
-  const storedLowStockSupplies = localStorage.getItem('lowStockSupplies');
 
-  // Verifica si el valor recuperado no es nulo ni indefinido
-  if (storedLowStockSupplies !== null && storedLowStockSupplies !== undefined) {
-    try {
-      // Intenta analizar el valor recuperado como JSON
-      const parsedData = JSON.parse(storedLowStockSupplies);
+  useEffect(() => {
+    // Intenta obtener los datos almacenados de localStorage
+    const storedLowStockSupplies = localStorage.getItem('lowStockSupplies');
 
-      // Actualiza el estado con los datos analizados
-      setLowStockSupplies(parsedData);
-    } catch (error) {
-      console.error('Error al analizar JSON desde localStorage:', error);
+    // Verifica si el valor recuperado no es nulo ni indefinido
+    if (storedLowStockSupplies !== null && storedLowStockSupplies !== undefined) {
+      try {
+        // Intenta analizar el valor recuperado como JSON
+        const parsedData = JSON.parse(storedLowStockSupplies);
+
+        // Actualiza el estado con los datos analizados
+        setLowStockSupplies(parsedData);
+      } catch (error) {
+        console.error('Error al analizar JSON desde localStorage:', error);
+      }
     }
-  }
 
-  // Calcula lowStock y actualiza el estado
-  const lowStock = supplies.filter((supply) => supply.Unit <= supply.Stock);
-  setLowStockSupplies(lowStock);
+    // Calcula lowStock y actualiza el estado
+    const lowStock = supplies.filter((supply) => supply.Unit <= supply.Stock);
+    setLowStockSupplies(lowStock);
 
-  // Almacena los datos actualizados en localStorage
-  localStorage.setItem('lowStockSupplies', JSON.stringify(lowStock));
+    // Almacena los datos actualizados en localStorage
+    localStorage.setItem('lowStockSupplies', JSON.stringify(lowStock));
 
-}, [supplies]);
+  }, [supplies]);
+
 
   const handleNavigate = () => {
     navigate('/shopping');
   };
 
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   return (
     <section className="pc-container">
@@ -103,6 +114,25 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      <div className="pagination-container pagination">
+        <Stack spacing={2}>
+          <Pagination
+            count={pageCount}
+            page={currentPage}
+            siblingCount={2}
+            onChange={handlePageChange}
+            variant="outlined"
+            shape="rounded"
+            title="Este botón sirve para cambiar de página."
+          />
+        </Stack>
+      </div>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: 2 }}>
+        <Typography variant="body2" color="text.secondary">
+          Página {currentPage} de {pageCount}
+        </Typography>
+      </Box>
     </section>
   );
 }

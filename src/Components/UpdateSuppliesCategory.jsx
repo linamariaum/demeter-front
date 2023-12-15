@@ -16,6 +16,12 @@ const style = {
   pt: 2,
   px: 4,
   pb: 3,
+  '@media (max-width: 770px)': {
+    width: '75%',
+  },
+  '@media (max-width: 315px)': {
+    width: '240px',
+  },
 };
 
 function UpdateSuppliesCategory({
@@ -133,11 +139,15 @@ function UpdateSuppliesCategory({
                           },
                           setValueAs: (value) =>
                             value
-                              .trim() 
-                              .replace(/\s+/g, ' ') 
+                              .trim()
+                              .replace(/\s+/g, ' ')
                               .toLowerCase()
-                              .replace(/^(.)/, (match) => match.toUpperCase()), 
+                              .replace(/^(.)/, (match) => match.toUpperCase()),
                         })}
+                        maxLength={30}
+                        onInput={(e) => {
+                          e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                        }}
                         type="text"
                         className="form-control"
                       />
