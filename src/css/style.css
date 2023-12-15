@@ -15194,6 +15194,109 @@ pre[class*="language-"]>code {
     margin-bottom: 0;
 }
 
+@media (max-width: 770px) {
+    .btnDelete-responsive {
+        margin-right: 1px !important;
+    }
+
+}
+
+@media (max-width: 648px) {
+    .btnDelete-responsive {
+        margin-left: 20px !important;
+    }
+}
+
+@media (max-width: 628px) {
+    .btnDelete-responsive {
+        margin-left: 10px !important;
+    }
+}
+
+@media (max-width: 565px) {
+    .btnDelete-responsive {
+        margin-left: 5px !important;
+    }
+}
+
+@media (max-width: 540px) {
+    .btnDelete-responsive {
+        margin-left: 1px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -2px !important;
+    }
+}
+
+@media (max-width: 510px) {
+    .btnDelete-responsive {
+        margin-left: -5px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -5px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .btnDelete-responsive {
+        margin-left: -8px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -8px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .btnDelete-responsive {
+        margin-left: -10px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -10px !important;
+    }
+}
+
+@media (max-width: 445px) {
+    .btnDelete-responsive {
+        margin-left: -14px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -14px !important;
+    }
+}
+
+@media (max-width: 436px) {
+    .btnDelete-responsive {
+        margin-left: -15px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -15px !important;
+    }
+
+    .buttonsdelete-responsive {
+        margin-top: -25px
+    }
+}
+
+@media (max-width: 425px) {
+    .btnDelete-responsive {
+        margin-left: -17px !important;
+    }
+
+    .btnDelete-responsive {
+        margin-right: -15px !important;
+    }
+
+    .buttonsdelete-responsive {
+        margin-top: 30px
+    }
+}
+
 /* ===== BORRAR ===== */
 .control {
     display: flex;
@@ -15207,6 +15310,50 @@ pre[class*="language-"]>code {
     justify-content: center;
     margin-left: 40px;
 }
+
+.city-two {
+    display: flex;
+    justify-content: center;
+    width: 120%;
+}
+
+.buttonconfirm-two {
+    display: flex;
+    justify-content: center;
+    margin: 5px;
+}
+
+@media (max-width: 660px) {
+    .mr-4 {
+        margin-right: 1rem !important;
+    }
+
+}
+
+@media (max-width: 639px) {
+    .mr-4 {
+        margin-right: 5px !important;
+    }
+
+}
+
+@media (max-width: 617px) {
+    .buttonconfirm-two .btn-primary {
+        margin-bottom: 5px;
+    }
+
+    .buttonconfirm-two {
+        margin-left: 50px !important;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .buttonconfirm-two {
+        margin-right: 50px !important;
+    }
+}
+
 
 .pc-sidebar .pc-caption span:not(.badge) {
     display: block;

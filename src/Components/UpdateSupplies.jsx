@@ -196,6 +196,10 @@ function UpdateSupplies({
                                                             .toLowerCase()
                                                             .replace(/^(.)/, (match) => match.toUpperCase()),
                                                 })}
+                                                maxLength={30}
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                                                }}
                                                 type="text"
                                                 className="form-control"
                                             />
@@ -228,6 +232,10 @@ function UpdateSupplies({
                                                         },
                                                     },
                                                 })}
+                                                maxLength={8}
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/[^\d.,]/g, '');
+                                                }}
                                                 type="text"
                                                 className="form-control"
                                             />
@@ -305,6 +313,10 @@ function UpdateSupplies({
                                                         },
                                                     },
                                                 })}
+                                                maxLength={4}
+                                                onInput={(e) => {
+                                                    e.target.value = e.target.value.replace(/[^\d.,]/g, '');
+                                                }}
                                                 type="text"
                                                 className="form-control"
                                             />

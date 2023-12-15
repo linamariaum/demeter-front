@@ -47,6 +47,12 @@ function Alert() {
 
   }, [supplies]);
 
+  
+  const pageCount = Math.ceil(lowStockSupplies.length / ITEMS_PER_PAGE);
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const visibleLowStockSupplies = lowStockSupplies.slice(startIndex, endIndex);
 
   const handleNavigate = () => {
     navigate('/shopping');
@@ -88,7 +94,7 @@ function Alert() {
                           </tr>
                         </thead>
                         <tbody>
-                          {lowStockSupplies.map((supply) => (
+                          {visibleLowStockSupplies.map((supply) => (
                             <tr key={supply.ID_Supplies}>
                               <td>{supply.Name_Supplies}</td>
                               <td>{supply.Unit}</td>
