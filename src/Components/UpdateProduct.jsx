@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
 import { useProduct } from '../Context/Product.context.jsx';
 import { useCategoryProducts } from '../Context/CategoryProducts.context.jsx';
-import { Navigate } from 'react-router-dom';
 
 function UpdateProduct() {
 
-    const { control, register, handleSubmit, formState: { errors, isValid }, setError } = useForm();
-    const { updateProduct, product } = useProduct();
+    const { updateProduct, product, CurrentProd, getProductById } = useProduct();
+    const { control, register, handleSubmit, reset, formState: { errors, isValid }, setError } = useForm();
     const { Category_products } = useCategoryProducts();
     const [selectedCategory, setSelectedCategory] = useState(null);
+
+    useLayoutEffect(() => {
+        const fetchData = async () => {
+            const productData = await getProductById(CurrentProd);
+            reset(productData);
+            setSelectedCategory({
+                value: productData.ProductCategory_ID,
+                label: getCategoryLabel(productData.ProductCategory_ID),
+            });
+        };
+
+        fetchData();
+    }, [reset, getProductById, CurrentProd]);
 
     const customStyles = {
         control: (provided, state) => ({
@@ -53,7 +65,7 @@ function UpdateProduct() {
 
         values.ProductCategory_ID = selectedCategory.value;
 
-        updateProduct(values)
+        updateProduct(CurrentProd, values);
     });
 
     const options = Category_products
@@ -62,6 +74,24 @@ function UpdateProduct() {
             value: category.ID_ProductCategory,
             label: category.Name_ProductCategory,
         }));
+
+    const onCancel = async () => {
+        // Obtener los datos originales del producto
+        const originalProductData = await getProductById(CurrentProd);
+
+        // Establecer los valores originales en los campos del formulario
+        setValue("Name_Products", originalProductData.Name_Products);
+        setValue("ProductCategory_ID", {
+            value: originalProductData.ProductCategory_ID,
+            label: originalProductData.ProductCategory_Name, // Ajusta esto según la estructura real de tu categoría
+        });
+        setValue("Price_Product", originalProductData.Price_Product);
+        // Restaurar cualquier otro campo que necesites
+
+        // Otra opción: resetear todo el formulario a sus valores originales
+        reset(originalProductData);
+        navigate('/product');
+    };
 
     return (
         <form onSubmit={onSubmit}>
@@ -82,6 +112,7 @@ function UpdateProduct() {
                         type="text"
                         placeholder='Nombre del producto'
                         className="form-control"
+                        value={product.Name_Products}
                     />
                     {errors.Name_Products && (
                         <p className="text-red-500">
@@ -104,7 +135,7 @@ function UpdateProduct() {
                                 value={selectedCategory}
                                 onChange={(selectedOption) => {
                                     setSelectedCategory(selectedOption);
-                                    field.onChange(selectedOption);
+                                    field.onChange(selectedOption.value);
                                 }}
                                 styles={customStyles}
                                 className="form-selects"
@@ -149,38 +180,6 @@ function UpdateProduct() {
                         </p>
                     )}
                 </div>
-                <div className="form-group col-md-6">
-                    <label htmlFor="Image" className="form-label">
-                        Imagen: <strong>*</strong>
-                    </label>
-                    <input
-                        {...register("Image", {
-                            required: "La imagen es obligatorio",
-                            validate: (value) => {
-                                if (!value[0]) {
-                                    return 'Por favor, selecciona una imagen.';
-                                }
-
-                                const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-                                const fileExtension = value[0].name
-                                    .slice(((value[0].name.lastIndexOf(".") - 1) >>> 0) + 2)
-                                    .toLowerCase();
-
-                                if (!allowedExtensions.includes(fileExtension)) {
-                                    return 'Formato de imagen no permitido. Utiliza archivos JPG, JPEG, PNG o GIF.';
-                                }
-                            },
-                        })}
-                        type="file"
-                        placeholder='Imagen del producto'
-                        className="form-control"
-                    />
-                    {errors.Image && (
-                        <p className="text-red-500">
-                            {errors.Image.message}
-                        </p>
-                    )}
-                </div>
             </div>
 
             <div className="buttonconfirm">
@@ -190,6 +189,12 @@ function UpdateProduct() {
                         type="submit"
                     >
                         Confirmar
+                    </button>
+                    <button
+                        onClick={onCancel}
+                        className="btn btn-danger mr-5"
+                    >
+                        Volver
                     </button>
                 </div>
             </div>

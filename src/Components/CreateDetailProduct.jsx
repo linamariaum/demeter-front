@@ -36,7 +36,7 @@ const CreateDetailProduct = () => {
   };
 
   const suppliesOptions = supplies
-    .filter(supply => supply.State && supply.Name_Supplies && detailP.some(d => d.Supply.Name_Supplies ))
+    .filter(supply => supply.State && !detailP.some(d => d.Supply.Name_Supplies === supply.Name_Supplies))
     .map(supply => ({
       value: supply.ID_Supplies,
       label: supply.Name_Supplies,
@@ -131,7 +131,7 @@ const CreateDetailProduct = () => {
             className="btn btn-primary mr-5"
             type="submit"
           >
-            Confirmar
+            Agregar ingrediente
           </button>
         </div>
       </div>

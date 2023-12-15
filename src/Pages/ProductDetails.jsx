@@ -4,11 +4,9 @@ import CreateDetailProduct from '../Components/CreateDetailProduct.jsx';
 import ViewDetailProduct from '../Components/ViewDetailProduct.jsx';
 import { useProduct } from '../Context/Product.context.jsx'
 
-
 export default function ProductDetails() {
 
-    const { product, getProducts, getCurrentProduct, CurrentProd } = useProduct();
-
+    const { CurrentProd } = useProduct();
 
     return (
         <section className="pc-container">

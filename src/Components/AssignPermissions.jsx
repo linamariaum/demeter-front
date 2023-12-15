@@ -107,12 +107,12 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
                     {roleState ? (
                       <>
                         <p>Desactivar</p>
-                        <MdToggleOn className={`estado-icon active`} />
+                        <MdToggleOn className="btn btn-success" />
                       </>
                     ) : (
                       <>
                         <p>Activar</p>
-                        <MdToggleOff className={`estado-icon inactive`} />
+                        <MdToggleOff className="btn btn-danger" />
                       </>
                     )}
                   </button>
