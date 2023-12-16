@@ -229,15 +229,6 @@ function CreateWaiter({ onClose, onCreated }) {
 
                                 <div className="buttonconfirm">
                                     <div className="ml-3">
-
-                                        <button
-                                            className="btn btn-primary"
-                                            onClick={onCancel}
-                                            type="button"
-                                            title='Se cancelan los datos del nuevo mesero.'
-                                        >
-                                            Cancelar
-                                        </button>
                                         <button
                                             className="btn btn-primary mr-5"
                                             type="submit"
@@ -246,7 +237,14 @@ function CreateWaiter({ onClose, onCreated }) {
                                         >
                                             Confirmar
                                         </button>
-
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={onCancel}
+                                            type="button"
+                                            title='Se cancelan los datos del nuevo mesero.'
+                                        >
+                                            Cancelar
+                                        </button>
                                     </div>
                                 </div>
                             </form>

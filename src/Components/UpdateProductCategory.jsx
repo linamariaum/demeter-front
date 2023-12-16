@@ -169,7 +169,7 @@ function UpdateProductCategory({
                         Confirmar
                       </button>
                       <button
-                        className="btn btn-primary"
+                        className="btn btn-danger"
                         onClick={onCancel}
                         type="submit"
                         title="Este botón sirve para cerrar la ventana modal sin guardar la información."

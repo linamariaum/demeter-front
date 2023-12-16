@@ -20,6 +20,14 @@ const style = {
 export default function UpdateRole({ onClose, roleToEdit }) {
   const { register, handleSubmit, formState: { errors } } = useForm({ defaultValues: roleToEdit });
   const { updateRole, role } = useRole();
+  const [isNameDuplicate, setIsNameDuplicate] = useState(false);
+
+  function removeAccentsAndSpaces(str) {
+    return str
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f\s]/g, '');
+  }
 
   useEffect(() => {
     register('Name_Role', {
@@ -32,12 +40,29 @@ export default function UpdateRole({ onClose, roleToEdit }) {
         );
 
         if (duplicateName_Role) {
-          return 'Este correo ya existe.';
+          setIsNameDuplicate(true);
+          return 'Este nombre ya existe.';
         }
+
+        const normalizedInputName = removeAccentsAndSpaces(value);
+        const normalizedExistingNames = role.map((rol) =>
+          removeAccentsAndSpaces(rol.Name_Role)
+        );
+
+        const isNameDuplicate = normalizedExistingNames.includes(
+          normalizedInputName
+        );
+
+        setIsNameDuplicate(isNameDuplicate);
+
+        if (isNameDuplicate) {
+          return 'Este nombre ya existe.';
+        }
+
         return true;
       },
     });
-  }, [register, role, roleToEdit.ID_Role]);
+  }, [register, role, roleToEdit.ID_Role, setIsNameDuplicate]);
 
   const onSubmit = handleSubmit(async (values) => {
     updateRole(roleToEdit.ID_Role, values);
@@ -59,24 +84,40 @@ export default function UpdateRole({ onClose, roleToEdit }) {
             <div className="card-body">
               <form onSubmit={onSubmit}>
 
-                <div className="control">
+                <div className="city">
                   <div className="form-group col-md-6">
                     <label htmlFor="Name_Role" className="form-label">
-                      Nombres: <strong>*</strong>
+                      Nombre: <strong>*</strong>
                     </label>
                     <input
                       {...register("Name_Role", {
-                        required: "El nombre es obligatorio",
                         pattern: {
-                          value: /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*[a-záéíóúñ]$/,
-                          message:
-                            "El nombre del mesero debe tener la primera letra en mayúscula y solo letras."
-                        }
+                          value: /^[A-Za-zÁÉÍÓÚÑáéíóúñ]+(\s[A-Za-zÁÉÍÓÚÑáéíóúñ]+)?$/,
+                          message: 'Solo se permiten letras, tildes y hasta un espacio entre letras.',
+                        },
+                        minLength: {
+                          value: 3,
+                          message: 'El nombre debe tener al menos 3 caracteres.',
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: 'El nombre no puede tener más de 30 caracteres.',
+                        },
+                        setValueAs: (value) =>
+                          value
+                            .trim()
+                            .replace(/\s+/g, ' ')
+                            .toLowerCase()
+                            .replace(/^(.)/, (match) => match.toUpperCase()),
                       })}
+                      maxLength={30}
+                      onInput={(e) => {
+                        e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                      }}
                       type="text"
                       placeholder='Nombre'
                       className="form-control"
-                      title='Se cambia el nombre del rol que se desea editar.'
+                      title='Ingrese el nombre del nuevo rol.'
                     />
                     {errors.Name_Role && (
                       <p className="text-red-500">

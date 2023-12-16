@@ -423,7 +423,7 @@ export default function CreateSupplier({
                           Confirmar
                         </button>
                         <button
-                          className="btn btn-primary"
+                          className="btn btn-danger"
                           onClick={handleClose}
                           type="button"
                         >

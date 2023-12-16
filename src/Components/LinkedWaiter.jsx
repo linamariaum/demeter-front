@@ -26,7 +26,7 @@ function LinkedWaiter({ isOpen = false, useButton = true, onClose = () => null }
     return (
         <div>
             {
-                useButton && <button className="btn btn-primary" onClick={handleOpen}>Cancelar</button>
+                useButton && <button className="btn btn-danger" onClick={handleOpen}>Cancelar</button>
             }
             <Modal
                 open={open}

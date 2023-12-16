@@ -160,7 +160,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                                 Confirmar
                                             </button>
                                             <button
-                                                className="btn btn-primary"
+                                                className="btn btn-danger"
                                                 onClick={onCancel}
                                                 type="button"
                                                 title="Este botón sirve para cerrar la ventana modal sin guardar la información."

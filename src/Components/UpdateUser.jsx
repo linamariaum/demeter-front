@@ -254,7 +254,7 @@ function UpdateUser({ onClose, userToEdit }) {
                                             Guardar
                                         </button>
                                         <button
-                                            className="btn btn-primary"
+                                            className="btn btn-danger"
                                             onClick={onCancel}
                                             type="button"
                                         >

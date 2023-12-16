@@ -47,7 +47,7 @@ function ConfirmShop({ onConfirm, data, ...onConfirmValues }) {
           </button>
 
 
-          <button onClick={handleClose} className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded m-3 j">
+          <button onClick={handleClose} className="btn btn-danger bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded m-3 j">
             Cancelar
           </button>
         </Box>

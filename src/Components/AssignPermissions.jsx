@@ -10,7 +10,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 600,
+  width: 680,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -87,7 +87,7 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
     })))
   }
   return (
-    <Box sx={{ ...style, width: 600, height: 500, overflow: "auto" }}>
+    <Box sx={{ ...style, height: 585, overflow: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="col-md-12">
         <div className="card">
           <div className="card-header">
@@ -118,27 +118,26 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
                   </button>
                 </div>
               ))}
-
-              <div className="buttonconfirm">
-                <div className="mb-3">
-                  <button
-                    className="btn btn-primary mr-5"
-                    type="submit"
-                    title='Se guarda la información recien ingresado en el sistema.'
-                  >
-                    Confirmar
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={onCancel}
-                    type="button"
-                    title='Se cancela la información recien ingresada en el sistema.'
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </div>
             </form>
+            <div className="buttonconfirm pt-5">
+              <div className="mb-3">
+                <button
+                  className="btn btn-primary mr-5"
+                  type="submit"
+                  title='Se guarda la información recien ingresado en el sistema.'
+                >
+                  Confirmar
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={onCancel}
+                  type="button"
+                  title='Se cancela la información recien ingresada en el sistema.'
+                >
+                  Cancelar
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
