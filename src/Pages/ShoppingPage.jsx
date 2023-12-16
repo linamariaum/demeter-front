@@ -165,6 +165,19 @@ function ShoppingPage() {
     pdfMake.createPdf(documentDefinition).download('shopping_report.pdf');
   };
 
+  const handleDisableShopping = async (id) => {
+    const disabledShopping = await disableShopping(id)
+
+    if (disabledShopping == null) return
+
+    setShoppingData(prev =>
+      prev.map((data) =>
+        data.ID_Shopping === disabledShopping.ID_Shopping
+          ? { ...data, State: !data.State }
+          : data
+      ))
+  }
+
   return (
     <section className="pc-container">
       <div className="pcoded-content">
@@ -267,7 +280,7 @@ function ShoppingPage() {
                                   type="button"
                                   title='Presiona para inhabilitar o habilitar la compra'
                                   className={`btn  btn-icon btn-success ${status}`}
-                                  onClick={() => disableShopping(ID_Shopping)}
+                                  onClick={() => handleDisableShopping(ID_Shopping)}
 
                                 >
                                   {State ? (

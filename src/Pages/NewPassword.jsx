@@ -136,7 +136,7 @@ function NewPassword() {
 
 										<button type="submit" className="btn btn-block btn-primary mt-3 mr-3" title='Presiona para cambiar la contraseña'>Confirmar</button>
 										<Link to="/">
-											<button title='Presiona para volver al login' className="btn btn-block btn-primary mt-3">
+											<button title='Presiona para volver al login' className="btn btn-block btn-danger mt-3">
 												Cancelar
 											</button>
 										</Link>

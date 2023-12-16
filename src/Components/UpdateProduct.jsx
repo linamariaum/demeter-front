@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import Select from 'react-select';
 import { useForm, Controller } from 'react-hook-form';
 import { useProduct } from '../Context/Product.context.jsx';
@@ -8,21 +8,34 @@ function UpdateProduct() {
 
     const { updateProduct, product, CurrentProd, getProductById } = useProduct();
     const { control, register, handleSubmit, reset, formState: { errors, isValid }, setError } = useForm();
-    const { Category_products } = useCategoryProducts();
-    const [selectedCategory, setSelectedCategory] = useState(null);
+    const { getCategory_products_without_state, Category_products } = useCategoryProducts();
+    const [categoryProduct, setCategoryProduct] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState({});
 
-    useLayoutEffect(() => {
-        const fetchData = async () => {
+    useEffect(() => {
+        return async () => {
             const productData = await getProductById(CurrentProd);
             reset(productData);
+            const categoryProducts = await getCategory_products_without_state(productData.ProductCategory_ID)
+
+            setCategoryProduct(categoryProducts)
             setSelectedCategory({
                 value: productData.ProductCategory_ID,
-                label: getCategoryLabel(productData.ProductCategory_ID),
+                label: categoryProducts,
             });
-        };
 
-        fetchData();
+            // const categoryProductStructure = categoryProducts.map(c => ({
+            //     value: c.ID_ProductCategory,
+            //     label: c.Name_ProductCategory
+            // }))
+
+            // console.log("selectedCategory", categoryProductStructure)
+        }
+
     }, [reset, getProductById, CurrentProd]);
+
+
+    // return <h1>Hi</h1>
 
     const customStyles = {
         control: (provided, state) => ({
@@ -45,30 +58,12 @@ function UpdateProduct() {
     };
 
     const onSubmit = handleSubmit(async (values) => {
-        const idNameProductDuplicate = product.some(products => products.Name_Products === values.Name_Products);
-
-        if (idNameProductDuplicate) {
-            setError('Name_Products', {
-                type: 'manual',
-                message: 'El nombre del producto ya existe.'
-            });
-            return;
-        }
-
-        if (!selectedCategory || selectedCategory.value === '') {
-            setError('ProductCategory_ID', {
-                type: 'manual',
-                message: 'Debe seleccionar una categoria para el producto.'
-            });
-            return;
-        }
-
         values.ProductCategory_ID = selectedCategory.value;
-
+        
         updateProduct(CurrentProd, values);
     });
 
-    const options = Category_products
+    const options = categoryProduct
         .filter(category => category.State)
         .map(category => ({
             value: category.ID_ProductCategory,
@@ -132,7 +127,7 @@ function UpdateProduct() {
                         render={({ field }) => (
                             <Select
                                 options={options}
-                                value={selectedCategory}
+                                // value={selectedCategory}
                                 onChange={(selectedOption) => {
                                     setSelectedCategory(selectedOption);
                                     field.onChange(selectedOption.value);

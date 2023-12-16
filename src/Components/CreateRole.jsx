@@ -18,11 +18,29 @@ const style = {
 };
 
 function CreateRole({ onClose, onCreated }) {
+
     const { register, handleSubmit, formState: { errors }, setError } = useForm();
     const { createRole, role } = useRole();
 
+    function removeAccentsAndSpaces(str) {
+        return str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f\s]/g, '');
+    }
+
     const onSubmit = handleSubmit(async (values) => {
-        const isNameDuplicate = role.some(rol => rol.Name_Role === values.Name_Role);
+
+        const normalizedInputName = removeAccentsAndSpaces(
+            values.Name_Role
+        );
+        const normalizedExistingNames = role.map((rol) =>
+            removeAccentsAndSpaces(rol.Name_Role)
+        );
+
+        const isNameDuplicate = normalizedExistingNames.includes(
+            normalizedInputName
+        );
 
         if (isNameDuplicate) {
             setError('Name_Role', {
@@ -52,20 +70,36 @@ function CreateRole({ onClose, onCreated }) {
                         <div className="card-body">
                             <form onSubmit={onSubmit}>
 
-                                <div className="control">
+                                <div className="city">
                                     <div className="form-group col-md-6">
                                         <label htmlFor="Name_Role" className="form-label">
                                             Nombre: <strong>*</strong>
                                         </label>
                                         <input
                                             {...register("Name_Role", {
-                                                required: "El nombre es obligatorio",
                                                 pattern: {
-                                                    value: /^[A-ZÁÉÍÓÚÑ][a-záéíóúñ\s]*[a-záéíóúñ]$/,
-                                                    message:
-                                                        "El nombre del rol debe tener la primera letra en mayúscula y solo letras."
-                                                }
+                                                    value: /^[A-Za-zÁÉÍÓÚÑáéíóúñ]+(\s[A-Za-zÁÉÍÓÚÑáéíóúñ]+)?$/,
+                                                    message: 'Solo se permiten letras, tildes y hasta un espacio entre letras.',
+                                                },
+                                                minLength: {
+                                                    value: 3,
+                                                    message: 'El nombre debe tener al menos 3 caracteres.',
+                                                },
+                                                maxLength: {
+                                                    value: 30,
+                                                    message: 'El nombre no puede tener más de 30 caracteres.',
+                                                },
+                                                setValueAs: (value) =>
+                                                    value
+                                                        .trim()
+                                                        .replace(/\s+/g, ' ')
+                                                        .toLowerCase()
+                                                        .replace(/^(.)/, (match) => match.toUpperCase()),
                                             })}
+                                            maxLength={30}
+                                            onInput={(e) => {
+                                                e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/g, '');
+                                            }}
                                             type="text"
                                             placeholder='Nombre'
                                             className="form-control"

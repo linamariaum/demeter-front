@@ -35,7 +35,7 @@ function CancelShop() {
 
   return (
     <div>
-   <button className="btn btn-primary ml-2" onClick={handleOpen}>Cancelar compra</button>
+   <button className="btn btn-danger ml-2" onClick={handleOpen}>Cancelar compra</button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -55,7 +55,7 @@ function CancelShop() {
             Confirmar
           </button>
 
-          <button onClick={handleClose} className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded m-3 j">
+          <button onClick={handleClose} className="btn btn-danger bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded m-3 j">
             Cancelar
           </button>
         </Box>

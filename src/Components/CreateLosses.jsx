@@ -106,7 +106,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                             })}
                                             maxLength={8}
                                             onInput={(e) => {
-                                                e.target.value = e.target.value.replace(/[^\d.,]/g, '');
+                                                e.target.value = e.target.value.replace(/[^\d.]/g, '');
                                             }}
                                             type="text"
                                             className="form-control unit-losses"

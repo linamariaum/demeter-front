@@ -19,6 +19,25 @@ const style = {
     pb: 3
 };
 
+const customStyles = {
+    control: (provided, state) => ({
+        ...provided,
+        '&:hover': {
+            border: state.isFocused ? '1px solid #e36209' : '1px solid #ced4da',
+        },
+    }),
+    option: (provided, state) => ({
+        ...provided,
+        backgroundColor: state.isSelected ? '#e36209' : state.isFocused ? '#e36209' : 'white',
+        color: state.isSelected ? 'white' : state.isFocused ? '#555' : '#201E1E',
+        '&:hover': {
+            backgroundColor: '#e36209',
+            color: 'white',
+        },
+        cursor: state.isDisabled ? 'not-allowed' : 'default',
+    }),
+};
+
 function CreateUser({ onClose, onCreated }) {
     const { register, handleSubmit, formState: { errors, isValid }, setError } = useForm();
     const { createUser, user } = useUser();
@@ -41,27 +60,42 @@ function CreateUser({ onClose, onCreated }) {
         setSelectRol(selectedOption);
     };
 
-    const customStyles = {
-        control: (provided, state) => ({
-            ...provided,
-            '&:hover': {
-                border: state.isFocused ? '1px solid #e36209' : '1px solid #ced4da',
-            },
-        }),
-        option: (provided, state) => ({
-            ...provided,
-            backgroundColor: state.isSelected ? '#e36209' : state.isFocused ? '#e36209' : 'white',
-            color: state.isSelected ? 'white' : state.isFocused ? '#555' : '#201E1E',
-            '&:hover': {
-                backgroundColor: '#e36209',
-                color: 'white',
-            },
-            cursor: state.isDisabled ? 'not-allowed' : 'default',
-        }),
-    };
+    function removeAccentsAndSpaces(str) {
+        return str
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f\s]/g, '');
+    }
 
     const onSubmit = handleSubmit(async (values) => {
+        const normalizedInputName = removeAccentsAndSpaces(
+            values.Email
+        );
+        const normalizedExistingNames = role.map((rol) =>
+            removeAccentsAndSpaces(rol.Email)
+        );
+
+        const isEmailDuplicate = normalizedExistingNames.includes(
+            normalizedInputName
+        );
+
+        const isDocumentouplicate = user.some(users => users.Document === values.Document);
         
+        if (isDocumentouplicate) {
+            setError('Document', {
+                type: 'manual',
+                message: 'El documento del usuario ya existe.'
+            });
+            return;
+        }
+
+        if (isEmailDuplicate) {
+            setError('Email', {
+                type: 'manual',
+                message: 'El correo del usuario ya existe.'
+            });
+            return;
+        }
 
         if (!selectedType || selectedType.value === '') {
             setError('Type_Document', {
@@ -306,7 +340,7 @@ function CreateUser({ onClose, onCreated }) {
                                             Confirmar
                                         </button>
                                         <button
-                                            className="btn btn-primary"
+                                            className="btn btn-danger"
                                             onClick={onCancel}
                                             type="button"
                                         >

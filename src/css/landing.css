@@ -637,9 +637,9 @@ strong {
 }
 
 .modal-container button {
-    margin-top: 100px;
     margin-right: 10px;
     min-width: 100px;
+    align-content: center;
 }
 
 .deleteText {
@@ -669,3 +669,7 @@ strong {
     justify-content: space-evenly;
     align-items: flex-start;
 }
+
+.new-row {
+    clear: both; /* Comienza una nueva fila */
+  }

@@ -10,7 +10,6 @@ const Dashboard = () => {
   const { salesChart, fetchSales, fetchSalesusers, salesuserChart, fetchBP, besProd , shopsChart, fetchShops,
     fetchsupli,
     supli } = useDashboard();
-    
 
   useEffect(() => {
     getUsers();

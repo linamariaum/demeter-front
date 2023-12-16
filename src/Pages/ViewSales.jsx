@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSaleContext } from '../Context/SaleContext';
+import { useProduct } from '../Context/Product.context.jsx'
 import ReactPaginate from 'react-paginate';
 import '../fonts/feather.css'; 
 import '../fonts/fontawesome.css'; 
@@ -16,26 +17,35 @@ import { useUser } from "../Context/User.context.jsx";
 
 
 function ViewSales() {
-  const {  fetchSales, Sales, paySale, getOne, Sale , selectAction, CancelDet} = useSaleContext();
+  const {  fetchSales, Sales, paySale, getOne, Sale , selectAction, CancelDet , newDetails, clearDet} = useSaleContext();
   const [pageNumber, setPageNumber] = useState(0);
   const [idSale, setID] = useState();
   const salesPerPage = 6;
   const pagesVisited = pageNumber * salesPerPage;
-  
+  const { getDetailProduct2 } = useProduct();
   const { user, getWaiters, toggleUserStatus } = useUser();
   const [searchTerm, setSearchTerm] = useState("");
   const handlePageClick = ({ selected }) => {
     setPageNumber(selected);
   };
-
+  const [productIdsList, setProductIdsList] = useState([]);
   const pageCount = Math.ceil(Sales.length / salesPerPage);
-
+  let isCleared = false;
   useEffect(() => {
     fetchSales();
     getWaiters();
+    newDetails.forEach((detail, index) => {
+      getDetailProduct2(detail.Product_ID);
+      
+      // Verificar si ya se ejecutó clearDet
+      if (!isCleared) {
+        clearDet();
+        isCleared = true;
+      }
+    });
   }, []);
-  
-  
+ 
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
  

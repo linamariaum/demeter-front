@@ -52,8 +52,18 @@ export const SaleProvider = ({ children }) => {
     const createManyDetails = async (data) => {
         try {
             const res = await CreateManysaleDetails(data);
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+    const clearDet = async (data) => {
+        try {
             setnewDetails([])
-            console.log(res.data)
+            
+            
         } catch (error) {
             console.log(error)
         }
@@ -157,7 +167,8 @@ export const SaleProvider = ({ children }) => {
                 CreateDetail,
                 createManyDetails,
                 getDetailsSale,
-                Count
+                Count,
+                clearDet    
             }}
         >
             {children}
