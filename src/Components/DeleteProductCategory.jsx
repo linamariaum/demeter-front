@@ -8,7 +8,6 @@ const DeleteProductCategory = ({ onClose, onDelete }) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     height: '250px',
-    width: '400px',
     padding: '20px',
     backgroundColor: 'white',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',

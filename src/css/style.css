@@ -2364,6 +2364,11 @@ progress {
 
 }
 
+.buttonconfirm {
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 415px) {
     .form-selects {
         margin-right: 90px;
@@ -2420,14 +2425,13 @@ progress {
         margin-left: 0px;
         margin-right: 30px;
     }
-    
+
     .select-rebeld label {
         margin-right: 64px;
     }
-    
+
     .select-rebeld .form-selects {
-        width: 85%; /* Ajusta el ancho del Select según tus necesidades */
-        margin-left: 20px;
+        width: 85%;
     }
 }
 
@@ -2447,14 +2451,43 @@ progress {
 
     .city {
         margin-left: 0px;
-        margin-right: 30px;
+        margin-right: 20px;
     }
 }
 
 
 
+@media (max-width: 257px) {
+    .buttons-columns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: 'center';
+        margin-left: -25px;
+        width: 140%;
+    }
 
+    .button-column-one {
+        margin-bottom: -70px;
+    }
+}
 
+@media (max-width: 175px) {
+    .buttons-columns {
+        margin-left: -35px;
+        width: 170%;
+    }
+}
+
+@media (max-width: 150px) {
+    .buttons-columns {
+        width: 210%;
+    }
+
+    .title-delete {
+        margin-left: -10px !important;
+    }
+}
 
 @media (prefers-reduced-motion: reduce) {
     .form-control {
@@ -25652,10 +25685,83 @@ new-task label input[type=checkbox] {
     visibility: visible;
 }
 
-.buttonconfirm {
+.buttonconfirm-losses {
     display: flex;
     justify-content: center;
 }
+
+.reason-losses {
+    width: 200%;
+}
+
+.unit-losses {
+    width: 100%;
+}
+
+@media (max-width: 1706px) {
+    .mr-3 {
+        margin-right: 1rem !important;
+    }
+
+}
+
+@media (max-width: 1568px) {
+    .unit-losses{
+        width: 150%;
+    }
+
+    .unit-losses[type="text"]{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1546px) {
+    .btn-losses  {
+        padding: 10px; 
+    }
+
+    .unit-losses[type="text"]{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1330px) {
+    .buttonconfirm-losses {
+        margin-left: 25%;
+    }
+
+    .mr-3 {
+        margin-bottom: 10px;
+        margin-left: -3px;
+    }
+
+    .unit-losses[type="text"] {
+        width: 150%;
+    }
+}
+
+@media (max-width: 1173px) {
+    .buttonconfirm-losses {
+        margin-left: 18%;
+    }  
+
+    .unit-losses {
+        width: 170%;
+    }  
+}
+
+@media (max-width: 1081px) {
+    .unit-losses {
+        width: 190%;
+    }  
+}
+
+@media (max-width: 800px) {
+    .btn-losses  {
+        padding: 7px; 
+    } 
+}
+
 
 @media (max-width: 768px) {
     .pc-wizard.wizard>.steps a:after {

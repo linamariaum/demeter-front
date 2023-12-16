@@ -9,7 +9,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -17,10 +16,10 @@ const style = {
     px: 4,
     pb: 3,
     '@media (max-width: 770px)': {
-      width: '75%',
+      width: '50%',
     },
-    '@media (max-width: 315px)': {
-      width: '240px',
+    '@media (max-width: 410px)': {
+      width: '200px',
     },
   };
 
@@ -101,7 +100,7 @@ function CreateCategory_products({
                 aria-labelledby="child-modal-title"
                 aria-describedby="child-modal-description"
             >
-                <Box sx={{ ...style, width: 600 }}>
+                <Box sx={{ ...style, width: 400 }}>
                     <div className="col-md-12">
                         <div className="card">
                             <div className="card-header">
@@ -115,7 +114,7 @@ function CreateCategory_products({
                                             : onSubmit(event)
                                     }
                                 >
-                                    <div className="city">
+                                    <div className="city-two">
                                         <div className="form-group col-md-6">
                                             <label htmlFor="Name_ProductCategory" className="form-label">
                                                 Nombre: <strong>*</strong>
@@ -157,10 +156,10 @@ function CreateCategory_products({
                                         </div>
                                     </div>
 
-                                    <div className="buttonconfirm">
+                                    <div className="buttonconfirm-two">
                                         <div className="mb-3">
                                             <button
-                                                className="btn btn-primary mr-5"
+                                                className="btn btn-primary mr-4"
                                                 type="submit"
                                                 title="Este botón sirve para guardar la información y cerrar la ventana modal."
                                             >

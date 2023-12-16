@@ -10,7 +10,6 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -84,7 +83,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                 <form onSubmit={(event) => onSubmit(event)}>
 
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="Unit" className="form-label">
+                                        <label htmlFor="Unit" className="form-label unit-losses">
                                             Cantidad pérdida:
                                         </label>
                                         <input
@@ -110,7 +109,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                                 e.target.value = e.target.value.replace(/[^\d.,]/g, '');
                                             }}
                                             type="text"
-                                            className="form-control"
+                                            className="form-control unit-losses"
                                         />
                                         {errors.Unit && (
                                             <p className="text-red-500">{errors.Unit.message}</p>
@@ -118,7 +117,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                     </div>
 
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="Reason" className="form-label">
+                                        <label htmlFor="Reason" className="form-label reason-losses">
                                             Razón de la pérdida:
                                         </label>
                                         <textarea
@@ -157,17 +156,17 @@ function CreateLosses({ supply, onLossCreated }) {
                                         )}
                                     </div>
 
-                                    <div className="buttonconfirm">
+                                    <div className="buttonconfirm-losses">
                                         <div className="mb-3">
                                             <button
-                                                className="btn btn-primary mr-5"
+                                                className="btn btn-primary mr-3 btn-losses btn-losses-one"
                                                 type="submit"
                                                 title="Este botón sirve para guardar la información y cerrar la ventana modal."
                                             >
                                                 Confirmar
                                             </button>
                                             <button
-                                                className="btn btn-danger"
+                                                className="btn btn-danger btn-losses"
                                                 onClick={onCancel}
                                                 type="button"
                                                 title="Este botón sirve para cerrar la ventana modal sin guardar la información."

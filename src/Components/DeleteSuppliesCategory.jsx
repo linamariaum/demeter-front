@@ -34,7 +34,7 @@ const buttonStyles = {
 };
 
 function DeleteSuppliesCategory({ onClose, onDelete }) {
-  return (
+  return (  
     <div style={overlayStyles} onClick={onClose}>
       <div style={modalStyles}>
         <h1 className="text-3xl font-semibold">Eliminar categoría de insumo</h1>

@@ -6,7 +6,7 @@ const modalStyles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    height: '250px',
+    maxWidth: '80%',  // Utilizar un porcentaje máximo para el ancho
     width: '400px',
     padding: '20px',
     backgroundColor: 'white',
@@ -29,24 +29,29 @@ const overlayStyles = {
 
 const buttonStyles = {
     marginTop: '80px',
-    marginRight: '10%',
-    marginLeft: '10%',
+    width: '45%',
+    display: 'flex',
+    flexDirection: 'column',  // Alinear el texto verticalmente
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '10px',  // Añadir espacio interno para el texto
 };
+
 
 function DeleteSupplies({ onClose, onDelete }) {
     return (
         <div style={overlayStyles} onClick={onClose}>
             <div style={modalStyles}>
-                <h1 className="text-3xl font-semibold">Eliminar insumo</h1>
+                <h1 className="text-3xl font-semibold title-delete">Eliminar insumo</h1>
                 <p className="deleteText">¿Está seguro de que desea eliminar este insumo?</p>
-                <div className="flex justify-between ">
+                <div className="flex justify-between flex-wrap buttons-columns">  
                     <button
                         onClick={onDelete}
                         style={buttonStyles}
-                        className="btn btn-icon btn-danger"
+                        className="btn btn-icon btn-danger button-column-one"
                         title="Este botón sirve para eliminar el insumo y cerrar la ventana modal."
                     >
-                        Eliminar
+                        <span>Eliminar</span>
                     </button>
                     <button
                         onClick={onClose}
@@ -54,7 +59,7 @@ function DeleteSupplies({ onClose, onDelete }) {
                         className="btn btn-icon btn-primary"
                         title="Este botón sirve para cerrar la ventana modal sin eliminar el insumo."
                     >
-                        Cancelar
+                        <span>Cancelar</span>
                     </button>
                 </div>
             </div>
