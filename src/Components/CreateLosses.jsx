@@ -15,7 +15,7 @@ const style = {
     boxShadow: 24,
     pt: 2,
     px: 4,
-    pb: 3,
+    pb: 2,
 };
 
 function CreateLosses({ supply, onLossCreated }) {
@@ -149,7 +149,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                                 e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s,.]/g, '');
                                             }}
                                             type="textarea"
-                                            className="form-control"
+                                            className="form-control reason-losses"
                                         />
                                         {errors.Reason && (
                                             <p className="text-red-500">{errors.Reason.message}</p>

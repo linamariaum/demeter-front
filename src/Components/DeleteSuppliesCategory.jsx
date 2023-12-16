@@ -6,7 +6,7 @@ const modalStyles = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  height: '250px',
+  maxWidth: '80%',  
   width: '400px',
   padding: '20px',
   backgroundColor: 'white',
@@ -29,26 +29,46 @@ const overlayStyles = {
 
 const buttonStyles = {
   marginTop: '80px',
-  marginRight: '10%',
-  marginLeft: '10%',
+  width: '45%',
+  display: 'flex',
+  flexDirection: 'column', 
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '10px',  
 };
+
+const textStyles = {
+  whiteSpace: 'normal',
+  fontSize: '1.25rem',  // Tamaño de fuente base
+};
+
+// Agrega la media query dentro del objeto de estilos
+if (window.innerWidth <= 500) {
+  textStyles.fontSize = '0.8rem';
+}
 
 function DeleteSuppliesCategory({ onClose, onDelete }) {
   return (  
     <div style={overlayStyles} onClick={onClose}>
       <div style={modalStyles}>
-        <h1 className="text-3xl font-semibold">Eliminar categoría de insumo</h1>
-        <p className="deleteText">¿Está seguro de que desea eliminar esta categoría?</p>
-        <div className="flex justify-between ">
-          <button onClick={onDelete} style={buttonStyles} className="btn btn-icon btn-danger"
+        <h1 className="text-3xl font-semibold" style={textStyles}>Eliminar categoría de insumo</h1>
+        <p className="deleteText" style={textStyles}>¿Está seguro de que desea eliminar esta categoría?</p>
+        <div className="flex justify-between flex-wrap buttons-columns">  
+          <button
+            onClick={onDelete}
+            style={buttonStyles}
+            className="btn btn-icon btn-danger button-column-one"
             title="Este botón sirve para eliminar la categoría y cerrar la ventana modal."
           >
-            Eliminar
+            <span>Eliminar</span>
           </button>
-          <button onClick={onClose} style={buttonStyles} className="btn btn-icon btn-primary"
+          <button
+            onClick={onClose}
+            style={buttonStyles}
+            className="btn btn-icon btn-primary"
             title="Este botón sirve para cerrar la ventana modal sin eliminar la categoría."
           >
-            Cancelar
+            <span>Cancelar</span>
           </button>
         </div>
       </div>

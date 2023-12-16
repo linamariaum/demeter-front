@@ -6,7 +6,7 @@ const modalStyles = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    maxWidth: '80%',  // Utilizar un porcentaje máximo para el ancho
+    maxWidth: '80%',  
     width: '400px',
     padding: '20px',
     backgroundColor: 'white',
@@ -31,10 +31,10 @@ const buttonStyles = {
     marginTop: '80px',
     width: '45%',
     display: 'flex',
-    flexDirection: 'column',  // Alinear el texto verticalmente
+    flexDirection: 'column',  
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '10px',  // Añadir espacio interno para el texto
+    padding: '10px',  
 };
 
 

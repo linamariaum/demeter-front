@@ -6,7 +6,7 @@ import { useCategorySupplies } from '../Context/CategorySupplies.context.jsx';
 import { useSupplies } from "../Context/Supplies.context.jsx";
 import CreateSuppliesCategory from "../Components/CreateSuppliesCategory.jsx";
 import UpdateSuppliesCategory from "../Components/UpdateSuppliesCategory.jsx";
-import DeleteSuppliesCategory from "../Components/DeleteSupplies.jsx";
+import DeleteSuppliesCategory from "../Components/DeleteSuppliesCategory.jsx";
 import CannotDeleteCategory from "../Components/CannotDeleteSuppliesCategory.jsx";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';

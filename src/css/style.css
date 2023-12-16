@@ -15330,6 +15330,29 @@ pre[class*="language-"]>code {
     }
 }
 
+.btn-cannot {
+    display: flex;
+    justify-content: center;
+    margin-left: 27%;
+}
+
+@media (max-width: 257px) {
+    .btn-cannot {
+        margin-left: -10%;
+    }
+    
+
+}
+
+@media (max-width: 190px) {
+    .btn-cannot {
+        margin-left: 0%;
+    }
+    
+
+}
+
+
 /* ===== BORRAR ===== */
 .control {
     display: flex;
@@ -15347,8 +15370,9 @@ pre[class*="language-"]>code {
 .city-two {
     display: flex;
     justify-content: center;
-    width: 120%;
+    width: 110%;
 }
+
 
 .buttonconfirm-two {
     display: flex;
@@ -25685,6 +25709,7 @@ new-task label input[type=checkbox] {
     visibility: visible;
 }
 
+
 .buttonconfirm-losses {
     display: flex;
     justify-content: center;
@@ -25695,72 +25720,75 @@ new-task label input[type=checkbox] {
 }
 
 .unit-losses {
+    width: 150%;
+}
+
+.unit-losses[type="text"] {
     width: 100%;
 }
 
-@media (max-width: 1706px) {
+
+@media (max-width: 768px) {
+
+    .unit-losses[type="text"] {
+        width: 50%;
+    }
+
+    .reason-losses[type="textarea"] {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .unit-losses[type="text"] {
+        width: 100%;
+    }
+
+    .reason-losses[type="textarea"] {
+        width: 200%;
+    }
+}
+
+
+@media (max-width: 619px) {
     .mr-3 {
         margin-right: 1rem !important;
     }
 
-}
-
-@media (max-width: 1568px) {
-    .unit-losses{
-        width: 150%;
-    }
-
-    .unit-losses[type="text"]{
-        width: 100%;
+    .btn-losses {
+        padding: 8px;
     }
 }
 
-@media (max-width: 1546px) {
-    .btn-losses  {
-        padding: 10px; 
-    }
-
-    .unit-losses[type="text"]{
-        width: 100%;
-    }
-}
-
-@media (max-width: 1330px) {
-    .buttonconfirm-losses {
-        margin-left: 25%;
-    }
-
+@media (max-width: 517px) {
     .mr-3 {
-        margin-bottom: 10px;
-        margin-left: -3px;
+        margin-right: 5px !important;
     }
 
-    .unit-losses[type="text"] {
-        width: 150%;
+    .btn-losses {
+        padding: 8px;
     }
 }
 
-@media (max-width: 1173px) {
-    .buttonconfirm-losses {
-        margin-left: 18%;
-    }  
+@media (max-width: 494px) {
+    .btn-losses-one {
+        display: flex;
+        margin-bottom: 7px;
+        margin-left: -3px !important;
+    }
+}
 
+@media (max-width: 423px) {
+    .reason-losses {
+        width: 100%;
+    }
+    
     .unit-losses {
-        width: 170%;
-    }  
+        width: 100%;
+    }
 }
 
-@media (max-width: 1081px) {
-    .unit-losses {
-        width: 190%;
-    }  
-}
 
-@media (max-width: 800px) {
-    .btn-losses  {
-        padding: 7px; 
-    } 
-}
 
 
 @media (max-width: 768px) {

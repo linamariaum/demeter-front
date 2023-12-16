@@ -3,7 +3,7 @@ import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
 import { useCategoryProducts } from '../Context/CategoryProducts.context.jsx';
-import { useProduct } from '../Context/Product.context.jsx';
+import { useProduct } from '../Context/Product.context.jsx'; 
 import CreateProductCategory from "../Components/CreateProductCategory.jsx";
 import UpdateProductCategory from "../Components/UpdateProductCategory.jsx";
 import DeleteProductCategory from "../Components/DeleteProductCategory.jsx";
@@ -17,7 +17,7 @@ import "../css/landing.css";
 
 function ProductCategoryPage() {
   const { Category_products, getCategory_products, deleteCategory_products, toggleCategoryProductStatus } = useCategoryProducts();
-  const { Product, getProduct } = useProduct();
+  const { Product, getProducts } = useProduct();
   const [searchTerm, setSearchTerm] = useState("");
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedProductCategoryToDelete, setSelectedProductCategoryToDelete] = useState(null);
@@ -31,6 +31,7 @@ function ProductCategoryPage() {
 
   useEffect(() => {
     getCategory_products();
+    getProducts();
     setCurrentPage(1);
   }, []);
 
