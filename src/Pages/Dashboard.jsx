@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useDashboard } from '../Context/Dashboard.context';
 import { useUser } from '../Context/User.context.jsx';
 import { useProduct } from '../Context/Product.context.jsx';
@@ -11,7 +11,7 @@ const Dashboard = () => {
     fetchsupli,
     supli } = useDashboard();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getUsers();
     getProducts();
     fetchSales();
@@ -19,7 +19,6 @@ const Dashboard = () => {
     fetchBP();
     fetchShops();
     fetchsupli();
-    console.log(shopsChart)
   }, []);
 
   // Utiliza los datos de salesChart para el gráfico

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AiFillDelete } from "react-icons/ai";
 import ShoppingBill from '../Components/ShoppingBill';
@@ -88,7 +88,7 @@ function NewPurchase() {
     Measure: 0
   }])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const updatedAvailableSupplies = suppliesState.filter(
       (supply) => !selectedSupplies.find((selected) => selected.ID_Supplies === supply.ID_Supplies)
     );
@@ -134,7 +134,7 @@ function NewPurchase() {
       total: array.reduce((acc, curr) => acc + (curr.Price_Supplier * curr.Lot), 0)
     }))
   }
-  useEffect(() => {
+  useLayoutEffect(() => {
     // setSuppliesState(getSupplies())
     // console.log("Supplies")
     updateTotalValue()

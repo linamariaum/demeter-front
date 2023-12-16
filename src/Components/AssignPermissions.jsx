@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
 import { useForm } from "react-hook-form";
@@ -6,7 +6,7 @@ import { useModule } from "../Context/Module.context";
 import { useRole } from "../Context/Role.context";
 
 const style = {
-  position: "fixed",
+  position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -48,7 +48,7 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
 
   const [modules, setModules] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     return async () => {
       const data = await getModuleNamesAndRoleState(roleId);
       setModules(data);

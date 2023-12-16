@@ -12,7 +12,7 @@ function UpdateProduct() {
     const [categoryProduct, setCategoryProduct] = useState([])
     const [selectedCategory, setSelectedCategory] = useState({});
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         return async () => {
             const productData = await getProductById(CurrentProd);
             reset(productData);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Select from 'react-select';
 import Box from "@mui/material/Box";
 import { useForm } from 'react-hook-form';
@@ -54,7 +54,7 @@ function UpdateUser({ onClose, userToEdit }) {
         }),
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         register('Document', {
             required: 'El documento es obligatorio',
             validate: (value) => {

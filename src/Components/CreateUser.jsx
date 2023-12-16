@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Select from 'react-select';
 import Box from "@mui/material/Box";
 import { useForm } from 'react-hook-form';
@@ -39,7 +39,7 @@ const customStyles = {
 };
 
 function CreateUser({ onClose, onCreated }) {
-    const { register, handleSubmit, formState: { errors, isValid }, setError } = useForm();
+    const { register, handleSubmit, formState: { errors, isValid }, setError, reset } = useForm();
     const { createUser, user } = useUser();
     const [selectedType, setSelectedType] = useState({ label: 'Seleccione tipo', value: '', isDisabled: true });
     const { role, getRoles } = useRole();
@@ -52,7 +52,7 @@ function CreateUser({ onClose, onCreated }) {
         { label: 'Pasaporte', value: 'PB' },
     ];
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getRoles();
     }, []);
 
@@ -68,34 +68,34 @@ function CreateUser({ onClose, onCreated }) {
     }
 
     const onSubmit = handleSubmit(async (values) => {
-        const normalizedInputName = removeAccentsAndSpaces(
-            values.Email
-        );
-        const normalizedExistingNames = role.map((rol) =>
-            removeAccentsAndSpaces(rol.Email)
-        );
+        // const normalizedInputName = removeAccentsAndSpaces(
+        //     values.Email
+        // );
+        // const normalizedExistingNames = role.map((rol) =>
+        //     removeAccentsAndSpaces(rol.Email)
+        // );
 
-        const isEmailDuplicate = normalizedExistingNames.includes(
-            normalizedInputName
-        );
+        // const isEmailDuplicate = normalizedExistingNames.includes(
+        //     normalizedInputName
+        // );
 
-        const isDocumentouplicate = user.some(users => users.Document === values.Document);
+        // const isDocumentouplicate = user.some(users => users.Document === values.Document);
         
-        if (isDocumentouplicate) {
-            setError('Document', {
-                type: 'manual',
-                message: 'El documento del usuario ya existe.'
-            });
-            return;
-        }
+        // if (isDocumentouplicate) {
+        //     setError('Document', {
+        //         type: 'manual',
+        //         message: 'El documento del usuario ya existe.'
+        //     });
+        //     return;
+        // }
 
-        if (isEmailDuplicate) {
-            setError('Email', {
-                type: 'manual',
-                message: 'El correo del usuario ya existe.'
-            });
-            return;
-        }
+        // if (isEmailDuplicate) {
+        //     setError('Email', {
+        //         type: 'manual',
+        //         message: 'El correo del usuario ya existe.'
+        //     });
+        //     return;
+        // }
 
         if (!selectedType || selectedType.value === '') {
             setError('Type_Document', {

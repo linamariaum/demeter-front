@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useCategorySupplies } from '../Context/CategorySupplies.context';
@@ -42,7 +42,7 @@ function UpdateSuppliesCategory({
     setError,
   } = useForm();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (supplyCategoryToEdit) {
       setValue('Name_SuppliesCategory', supplyCategoryToEdit.Name_SuppliesCategory);
 

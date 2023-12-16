@@ -41,6 +41,7 @@ import ViewSales from './Pages/ViewSales'
 import Sales from './Pages/sales'
 
 // Menu & Header
+import NavbarHeader from './Components/Navbar&Header.jsx'
 import Navbar from './Components/Navbar.jsx'
 import Header from './Components/Header.jsx'
 import ErrorBoundary from './Components/ErrorBoundary.jsx'
@@ -66,6 +67,7 @@ function App() {
                                 <Supplier>
                                   <Header />
                                   <Navbar />
+                                  {/* <NavbarHeader /> */}
                                   <ErrorBoundary>
                                     <Routes>
                                       <Route path='/' element={<Login />} />

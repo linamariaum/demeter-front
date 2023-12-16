@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSaleContext } from '../Context/SaleContext';
 import { useProduct } from '../Context/ProductContext';
@@ -27,15 +27,15 @@ function Edit_Bill() {
             Setsalemss("No puedes Generar")
         }
     }
-    useEffect(() => {
+    useLayoutEffect(() => {
         getDetailsSale(Sale.ID_Sale);
     }, [Sale, newDetails]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getwholeProducts();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (Sales.length > 0) {
             setNewSaleID(Sale.ID_Sale);
         }

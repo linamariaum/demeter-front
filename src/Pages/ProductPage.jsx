@@ -27,7 +27,7 @@ function ProductPage() {
     getProducts();
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getProducts();
     // setCurrentPage(1);
   }, []);

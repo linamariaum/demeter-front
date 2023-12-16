@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { BiEdit } from 'react-icons/bi';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -69,7 +69,7 @@ function UpdateSupplies({
         setError,
     } = useForm();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (supplyToEdit) {
             setValue('Name_Supplies', supplyToEdit.Name_Supplies);
             setValue('Unit', supplyToEdit.Unit);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { MdRemoveRedEye } from "react-icons/md";
@@ -25,7 +25,7 @@ function ShoppingView({ id, date }) {
   const { getShoppingAndSuppliesBySupplierIdAndDateTime } = useShoppingContext()
   const [shoppingData, setShoppingData] = useState([])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     return async () => {
       if (open || !id || !date) return
