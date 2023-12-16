@@ -29,12 +29,12 @@ function ProductCategoryPage() {
   const ITEMS_PER_PAGE = 7;
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getCategory_products();
     setCurrentPage(1);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     localStorage.setItem("showEnabledOnlyProduct", showEnabledOnly);
   }, [showEnabledOnly]);
 

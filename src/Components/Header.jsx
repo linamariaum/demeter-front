@@ -28,7 +28,7 @@ const Header = () => {
 		};
 	  }, []);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const handleClickOutside = (event) => {
 			if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
 				setShowDropdown(false);

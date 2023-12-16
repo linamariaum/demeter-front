@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import logo from '../img/logo.png'
 import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineMail, AiOutlineLock } from 'react-icons/ai'
 import { useUser } from "../Context/User.context.jsx";
@@ -30,7 +30,7 @@ function Login() {
 	};
 
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 
 		if (isAuthenticated) navigate('/dashboard')
 	}, [isAuthenticated])

@@ -30,7 +30,7 @@ function SuppliesCategoryPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getCategory_supplies();
     getSupplies();
     setCurrentPage(1);
@@ -220,30 +220,36 @@ function SuppliesCategoryPage() {
       </Box>
 
       {isDeleteModalOpen && (
-        <DeleteSuppliesCategory
-          onClose={closeDeleteModal}
-          onDelete={() => {
-            if (selectedSupplyCategoryToDelete) {
-              deleteCategory_supplies(selectedSupplyCategoryToDelete.ID_SuppliesCategory);
-              closeDeleteModal();
-            }
-          }}
-        />
+        <div className="absolute inset-0 flex items-center justify-center z-50">
+          <DeleteSuppliesCategory
+            onClose={closeDeleteModal}
+            onDelete={() => {
+              if (selectedSupplyCategoryToDelete) {
+                deleteCategory_supplies(selectedSupplyCategoryToDelete.ID_SuppliesCategory);
+                closeDeleteModal();
+              }
+            }}
+          />
+        </div>
       )}
 
       {showWarning && (
-        <CannotDeleteCategory
-          onClose={closeDeleteModal}
-        />
+        <div className="absolute inset-0 flex items-center justify-center z-50">
+          <CannotDeleteCategory
+            onClose={closeDeleteModal}
+          />
+        </div>
       )}
 
       {selectedSupplyCategoryToUpdate && (
-        <UpdateSuppliesCategory
-          supplyCategoryToEdit={selectedSupplyCategoryToUpdate}
-          onUpdate={() => {
-            setSelectedSupplyCategoryToUpdate(null);
-          }}
-        />
+        <div className="absolute inset-0 flex items-center justify-center z-50">
+          <UpdateSuppliesCategory
+            supplyCategoryToEdit={selectedSupplyCategoryToUpdate}
+            onUpdate={() => {
+              setSelectedSupplyCategoryToUpdate(null);
+            }}
+          />
+        </div>
       )}
 
     </section>

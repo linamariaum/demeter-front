@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, useLayoutEffect } from "react";
 import { getCategory_suppliesRequest, getOne_Category_suppliesRequest, createCategory_suppliesRequest, disableCategory_suppliesRequest, updateCategory_suppliesRequest, deleteCategory_suppliesRequest } from "../Api/SuppliesCategory.request";
 
 const CategorySuppliesContext = createContext();
@@ -16,7 +16,7 @@ export function CategorySupplies({ children }) {
     const [Category_supplies, setCategory_supplies] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const storedCategories = localStorage.getItem("categories");
         if (storedCategories) {
             setCategory_supplies(JSON.parse(storedCategories));

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useSupplies } from '../Context/Supplies.context';
 import StoreIcon from '@mui/icons-material/Store';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ function Alert() {
   const ITEMS_PER_PAGE = 7;
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getSupplies();
   }, []);
 

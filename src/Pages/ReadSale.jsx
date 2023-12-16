@@ -10,18 +10,18 @@ function ReadSale() {
     const { user, toggleUserStatus } = useUser();
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getwholeProducts();
     }, []);
     const getUserById = (userId) => {
         return user.find(user => user.ID_User === userId);
        };
        
-    useEffect(() => {
+    useLayoutEffect(() => {
         getDetailsSale(Sale.ID_Sale);
     }, [Sale]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const subtotal = details.reduce((acc, item) => {
             const product = AllProducts.find(product => product.ID_Product === item.Product_ID);
             return acc + (product.Price_Product * item.Lot);

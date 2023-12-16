@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Box from "@mui/material/Box";
 import { useForm } from 'react-hook-form';
 import { useRole } from '../Context/Role.context.jsx';
@@ -29,7 +29,7 @@ export default function UpdateRole({ onClose, roleToEdit }) {
       .replace(/[\u0300-\u036f\s]/g, '');
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     register('Name_Role', {
       required: 'El campo es obligatorio',
       validate: (value) => {

@@ -28,7 +28,7 @@ function ShoppingBill({ total = 0, onConfirm, onClose, ...confirmValues }) {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedSupplier, setSelectedSupplier, destroy] = useLocaStorage("supplier", {});
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     return async () => {
       const newSupplier = await Promise.resolve(getSupplier());
       const filteredSuppliers = newSupplier.filter((supplierItem) => supplierItem.State);

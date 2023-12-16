@@ -41,7 +41,7 @@ function RolePage() {
     const itemsForPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getRoles(),
         getUsers();
         setCurrentPage(1);
@@ -66,7 +66,7 @@ function RolePage() {
         setIsEditModalOpen(true);
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         localStorage.setItem("showEnabledOnly", showEnabledOnly);
     }, [showEnabledOnly]);
 
@@ -288,7 +288,7 @@ function RolePage() {
             </Box>
 
             {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="absolute inset-0 flex items-center justify-center z-50">
                     <div
                         className="modal-overlay"
                         onClick={() => setIsModalOpen(false)}
@@ -303,7 +303,7 @@ function RolePage() {
             )}
 
             {isModalOpenPrmissions && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="absolute inset-0 flex items-center justify-center z-50">
                     <div
                         className="modal-overlay"
                         onClick={() => setIsModalOpenPrmissions(false)}
@@ -319,7 +319,7 @@ function RolePage() {
             )}
 
             {isEditModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="absolute inset-0 flex items-center justify-center z-50">
                     <div
                         className="modal-overlay"
                         onClick={() => setIsEditModalOpen(false)}

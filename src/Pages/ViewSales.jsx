@@ -31,7 +31,8 @@ function ViewSales() {
   const [productIdsList, setProductIdsList] = useState([]);
   const pageCount = Math.ceil(Sales.length / salesPerPage);
   let isCleared = false;
-  useEffect(() => {
+  
+  useLayoutEffect(() => {
     fetchSales();
     getWaiters();
     newDetails.forEach((detail, index) => {
@@ -175,7 +176,7 @@ function ViewSales() {
         
       </section>
       {helloModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
+        <div className="absolute inset-0 flex items-center justify-center z-50">
           <div className="modal-container bg-white w-96 rounded-lg shadow-lg">
               <ReadSale></ReadSale>
             <div className="modal-actions flex justify-center pb-4">

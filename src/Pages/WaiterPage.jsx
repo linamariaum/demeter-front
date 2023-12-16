@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // Icons
@@ -39,7 +39,7 @@ function WaiterPage() {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const fetchData = async () => {
             try {
                 const users = await getWaiters();
@@ -67,7 +67,7 @@ function WaiterPage() {
         setIsEditModalOpen(true);
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         localStorage.setItem("showEnabledOnly", showEnabledOnly);
     }, [showEnabledOnly]);
 
@@ -259,7 +259,7 @@ function WaiterPage() {
                 </div>
 
             {isModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="absolute inset-0 flex items-center justify-center z-50">
                     <div className="modal-overlay" onClick={() => setIsModalOpen(false)}></div>
                     <div className="modal-container">
                         <CreateWaiter onClose={() => setIsModalOpen(false)} onCreated={handleCreated} />
@@ -268,7 +268,7 @@ function WaiterPage() {
             )}
 
             {isEditModalOpen && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
+                <div className="absolute inset-0 flex items-center justify-center z-50">
                     <div className="modal-overlay" onClick={() => setIsEditModalOpen(false)}></div>
                     <div className="modal-container">
                         <UpdateWaiter onClose={() => setIsEditModalOpen(false)} waiterToEdit={waiterToEdit} />

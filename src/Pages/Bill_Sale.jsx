@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSaleContext } from '../Context/SaleContext';
 import { useProduct } from '../Context/ProductContext';
@@ -30,11 +30,12 @@ function Bill() {
         setnewDetails(updatedDetails);
     };
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getwholeProducts();
         getWaiters();
     }, []);
-    useEffect(() => {
+
+    useLayoutEffect(() => {
         // Mapear la lista de usuarios para obtener nombres y crear las opciones del select
         const waiterOptions = user.map((userData) => (
           <option key={userData.ID_User} value={userData.ID_User}>
@@ -45,7 +46,7 @@ function Bill() {
         setWaiters(waiterOptions);
       }, [user]);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (Sales.length > 0) {
             setNewSaleID((Sales[Sales.length - 1].ID_Sale) + 1);
         } else {

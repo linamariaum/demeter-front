@@ -34,7 +34,7 @@ function UserPage() {
     const itemsForPage = 5;
     const [currentPage, setCurrentPage] = useState(1);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         getUsers();
         return async () => {
             const users = await getUsers();
@@ -277,14 +277,16 @@ function UserPage() {
                                             </Box>
 
                                             {isDeleteModalOpen && (
-                                                <DeleteUser
-                                                    onClose={cancelDelete}
-                                                    onDelete={confirmDelete}
-                                                />
+                                                <div className="absolute inset-0 flex items-center justify-center z-50">
+                                                    <DeleteUser
+                                                        onClose={cancelDelete}
+                                                        onDelete={confirmDelete}
+                                                    />
+                                                </div>
                                             )}
 
                                             {isModalOpen && (
-                                                <div className="fixed inset-0 flex items-center justify-center z-50">
+                                                <div className="absolute inset-0 flex items-center justify-center z-50">
                                                     <div className="modal-overlay" onClick={() => setIsModalOpen(false)}></div>
                                                     <div className="modal-container">
                                                         <CreateUser onClose={() => setIsModalOpen(false)} onCreated={handleCreated} />
@@ -293,7 +295,7 @@ function UserPage() {
                                             )}
 
                                             {isEditModalOpen && (
-                                                <div className="fixed inset-0 flex items-center justify-center z-50">
+                                                <div className="absolute inset-0 flex items-center justify-center z-50">
                                                     <div className="modal-overlay" onClick={() => setIsEditModalOpen(false)}></div>
                                                     <div className="modal-container">
                                                         <UpdateUser onClose={() => setIsEditModalOpen(false)} userToEdit={userToEdit} />

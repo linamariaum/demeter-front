@@ -30,7 +30,7 @@ function SuppliesPage() {
   const ITEMS_PER_PAGE = 7;
   const [currentPage, setCurrentPage] = useState(1);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     getSupplies();
   }, []);
 

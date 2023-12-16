@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useCategoryProducts } from '../Context/CategoryProducts.context';
@@ -42,7 +42,7 @@ function UpdateProductCategory({
     setError,
   } = useForm();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (productCategoryToEdit) {
       setValue('Name_ProductCategory', productCategoryToEdit.Name_ProductCategory);
 
