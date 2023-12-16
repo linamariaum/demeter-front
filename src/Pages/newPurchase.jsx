@@ -293,7 +293,7 @@ function NewPurchase() {
                     <th>Cantidad</th>
                     <th>Medida</th>
                     <th>Precio</th>
-                    <th>Acción</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
