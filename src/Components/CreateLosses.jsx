@@ -100,11 +100,15 @@ function CreateLosses({ supply, onLossCreated }) {
                                                     validRange: (value) => {
                                                         const parsedValue = parseFloat(value);
                                                         if (parsedValue < 0 || parsedValue > 99999999) {
-                                                            return 'La cantidad debe estar entre 0 y 99999999.';
+                                                            return 'La cantidad debe estar entre 0 y 99.999.999.';
                                                         }
                                                     },
                                                 },
                                             })}
+                                            maxLength={8}
+                                            onInput={(e) => {
+                                                e.target.value = e.target.value.replace(/[^\d.]/g, '');
+                                            }}
                                             type="text"
                                             className="form-control"
                                         />
@@ -135,13 +139,16 @@ function CreateLosses({ supply, onLossCreated }) {
                                                 },
                                                 setValueAs: (value) => {
                                                     const capitalizedValue = value
-                                                        .replace(/^\w/, (match) => match.toUpperCase()) 
-                                                        .replace(/\. (\w)/g, (match) => `${match.toUpperCase()}`) 
-                                                        .trim(); 
+                                                        .replace(/^\w/, (match) => match.toUpperCase())
+                                                        .replace(/\. (\w)/g, (match) => `${match.toUpperCase()}`)
+                                                        .trim();
 
                                                     return capitalizedValue.endsWith('.') ? capitalizedValue : `${capitalizedValue}.`;
                                                 },
                                             })}
+                                            onInput={(e) => {
+                                                e.target.value = e.target.value.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s,.]/g, '');
+                                            }}
                                             type="textarea"
                                             className="form-control"
                                         />

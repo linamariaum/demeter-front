@@ -213,7 +213,7 @@ function CreateSupplies({
                         })}
                         maxLength={8}
                         onInput={(e) => {
-                          e.target.value = e.target.value.replace(/[^\d.,]/g, '');
+                          e.target.value = e.target.value.replace(/[^\d.]/g, '');
                         }}
                         type="text"
                         className="form-control"
@@ -295,7 +295,7 @@ function CreateSupplies({
                         })}
                         maxLength={4}
                         onInput={(e) => {
-                          e.target.value = e.target.value.replace(/[^\d.,]/g, ''); 
+                          e.target.value = e.target.value.replace(/[^\d.]/g, ''); 
                         }}
                         type="text"
                         className="form-control"
