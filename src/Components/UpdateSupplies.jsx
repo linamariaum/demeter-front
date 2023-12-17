@@ -210,7 +210,7 @@ function UpdateSupplies({
                                             )}
                                         </div>
 
-                                        <div className="form-group col-md-6">
+                                        {/* <div className="form-group col-md-6">
                                             <label htmlFor="Unit" className="form-label">
                                                 Cantidad:
                                             </label>
@@ -242,10 +242,10 @@ function UpdateSupplies({
                                             {errors.Unit && (
                                                 <p className="text-red-500">{errors.Unit.message}</p>
                                             )}
-                                        </div>
-                                    </div>
+                                        </div> */}
 
-                                    <div className="control">
+
+
                                         <div className="form-group col-md-6">
                                             <label htmlFor="Measure" className="form-label">
                                                 Medida:
@@ -284,7 +284,9 @@ function UpdateSupplies({
                                                 <p className="text-red-500">{errors.Measure.message}</p>
                                             )}
                                         </div>
+                                    </div>
 
+                                    <div className="control">
                                         <div className="form-group col-md-6">
                                             <label htmlFor="Stock" className="form-label">
                                                 Existencia mínima:
@@ -324,9 +326,8 @@ function UpdateSupplies({
                                                 <p className="text-red-500">{errors.Stock.message}</p>
                                             )}
                                         </div>
-                                    </div>
 
-                                    <div className="city">
+
                                         <div className="form-group col-md-6 select-rebeld">
                                             <label htmlFor="SuppliesCategory_ID" className="form-label">
                                                 Categoría:
