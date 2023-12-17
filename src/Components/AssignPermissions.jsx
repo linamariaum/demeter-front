@@ -24,7 +24,6 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
     register,
     handleSubmit,
     formState: { errors },
-    setError
   } = useForm();
 
   const { getModuleNamesAndRoleState, removeMultipleModulePermissions } = useModule();
@@ -42,6 +41,7 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
     if (newDisabledRoles.length > 0) {
       await removeMultipleModulePermissions(roleId, newDisabledRoles.map(n => n.moduleId))
     }
+
     onCreated();
     onClose();
   });
@@ -86,6 +86,7 @@ export default function AssignPermissions({ onClose, onCreated = () => null, rol
       roleState: p.ID_Module === moduleId ? !p.roleState : p.roleState
     })))
   }
+
   return (
     <Box sx={{ ...style, height: 585, overflow: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <div className="col-md-12">
