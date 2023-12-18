@@ -48,20 +48,28 @@ function SuppliesCategoryPage() {
     setShowEnabledOnly(!showEnabledOnly);
   };
 
-  const filteredSupplies = supplies.filter((supply) => {
-    const searchString = searchTerm.toLowerCase();
+  const filteredSuppliesCategory = Category_supplies.filter((category) => {
+    const {
+      Name_SuppliesCategory,
+      State
+    } = category;
   
     if (showEnabledOnly) {
-      return supply.State && Object.values(supply)
-        .filter(value => typeof value === 'string') // Filter only string values
-        .some(value => value.toLowerCase().includes(searchString));
+      return (
+        category.State && o
+        `${Name_SuppliesCategory} ${State}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+      );
     }
   
-    return Object.values(supply)
-      .filter(value => typeof value === 'string') // Filter only string values
-      .some(value => value.toLowerCase().includes(searchString));
+    return (
+      `${Name_Supplies} ${Unit} ${Measure} ${Stock} ${State}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
   });
-
+  
   const enabledSuppliesCategory = filteredSuppliesCategory.filter((suppliesCategory) => suppliesCategory.State);
   const disabledSuppliesCategory = filteredSuppliesCategory.filter((suppliesCategory) => !suppliesCategory.State);
   const sortedSuppliesCategory = [...enabledSuppliesCategory, ...disabledSuppliesCategory];

@@ -46,18 +46,26 @@ function ProductCategoryPage() {
     setShowEnabledOnly(!showEnabledOnly);
   };
 
-  const filteredSupplies = supplies.filter((supply) => {
-    const searchString = searchTerm.toLowerCase();
+  const filteredProductsCategory = Category_products.filter((category) => {
+    const {
+      Name_ProductCategory,
+      State
+    } = category;
   
     if (showEnabledOnly) {
-      return supply.State && Object.values(supply)
-        .filter(value => typeof value === 'string') // Filter only string values
-        .some(value => value.toLowerCase().includes(searchString));
+      return (
+        category.State && o
+        `${Name_ProductCategory} ${State}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+      );
     }
   
-    return Object.values(supply)
-      .filter(value => typeof value === 'string') // Filter only string values
-      .some(value => value.toLowerCase().includes(searchString));
+    return (
+      `${Name_Supplies} ${Unit} ${Measure} ${Stock} ${State}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
   });
 
   const enabledProductsCategory = filteredProductsCategory.filter((productCategory) => productCategory.State);
