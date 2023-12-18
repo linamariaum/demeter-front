@@ -283,17 +283,13 @@ function CreateSupplies({
                               const parsedValue = parseFloat(value);
                               const parsedUnit = parseFloat(Unit);
 
-                              if (parsedValue < 0 || parsedValue > 9999) {
-                                return 'La existencia mínima debe estar entre 0 y 9.999.';
-                              }
-
-                              if (parsedValue > parsedUnit) {
-                                return `No puede ser mayor que la cantidad: ${parsedUnit}.`;
+                              if (parsedValue < 1 || parsedValue > 999) {
+                                return 'La existencia mínima debe estar entre 1 y 999.';
                               }
                             },
                           },
                         })}
-                        maxLength={4}
+                        maxLength={3}
                         onInput={(e) => {
                           e.target.value = e.target.value.replace(/[^\d.]/g, ''); 
                         }}

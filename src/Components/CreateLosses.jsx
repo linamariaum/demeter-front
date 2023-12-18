@@ -98,8 +98,14 @@ function CreateLosses({ supply, onLossCreated }) {
                                                     },
                                                     validRange: (value) => {
                                                         const parsedValue = parseFloat(value);
+                                                        const parsedUnit = parseFloat(supply.Unit);
+
                                                         if (parsedValue < 0 || parsedValue > 99999999) {
                                                             return 'La cantidad debe estar entre 0 y 99.999.999.';
+                                                        }
+                                                        
+                                                        if (parsedValue > parsedUnit) {
+                                                            return `No puede ser mayor que la cantidad: ${parsedUnit}.`;
                                                         }
                                                     },
                                                 },

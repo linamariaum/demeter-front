@@ -48,17 +48,17 @@ function SuppliesPage() {
   };
 
   const filteredSupplies = supplies.filter((supply) => {
-    const {
-      Name_Supplies,
-    } = supply;
-    const searchString =
-      `${Name_Supplies}`.toLowerCase();
-
+    const searchString = searchTerm.toLowerCase();
+  
     if (showEnabledOnly) {
-      return supply.State && searchString.includes(searchTerm.toLowerCase());
+      return supply.State && Object.values(supply)
+        .filter(value => typeof value === 'string') 
+        .some(value => value.toLowerCase().includes(searchString));
     }
-
-    return searchString.includes(searchTerm.toLowerCase());
+  
+    return Object.values(supply)
+      .filter(value => typeof value === 'string') 
+      .some(value => value.toLowerCase().includes(searchString));
   });
 
   const enabledSupplies = filteredSupplies.filter((supply) => supply.State);
