@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getLossesRequest, getLossRequest, createLossRequest } from '../Api/losses.request';
+import { getLossesRequest, getLossRequest, createLossRequest } from '../Api/Losses.request';
 
 const LossesContext = createContext();
 
