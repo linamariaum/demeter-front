@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
-import { getProductsRequest, getProductByCategoryRequest, createProductsRequest, statusProductsRequest, updateProductsRequest, deleteProductsRequest, getProductByIdRequest } from "../Api/Product.request.js"
-import { getProductSale, getAllProduct, getDetailProductRequest, getDetailProductRequest2, createDetailPRequest, deleteDetailProductRequest } from "../Api/Product.request.js" //Detalles
+import { getProductsRequest, getProductByCategoryRequest, createProductsRequest, statusProductsRequest, updateProductsRequest, deleteProductsRequest, getProductByIdRequest } from "../Api/product.request.js"
+import { getProductSale, getAllProduct, getDetailProductRequest, getDetailProductRequest2, createDetailPRequest, deleteDetailProductRequest } from "../Api/product.request.js" //Detalles
 import useLocaStorage from "../hooks/useLocaStorage.jsx";
 
 const ProductContext = createContext();
