@@ -16,7 +16,6 @@ import Box from '@mui/material/Box';
 import "../css/style.css";
 import "../css/landing.css";
 
-
 function SuppliesPage() {
   const { supplies, getSupplies, deleteSupplies, toggleSupplyStatus } = useSupplies();
   const { Category_supplies } = useCategorySupplies();
@@ -29,6 +28,7 @@ function SuppliesPage() {
   );
   const ITEMS_PER_PAGE = 7;
   const [currentPage, setCurrentPage] = useState(1);
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   useLayoutEffect(() => {
     getSupplies();
@@ -169,42 +169,51 @@ function SuppliesPage() {
                               </td>
                               <td style={{ maxWidth: '90px' }}>{supply.State ? 'Habilitado' : 'Deshabilitado'}</td>
                               <td>
-                                <div style={{ alignItems: "center" }}>
-
-                                  <UpdateSupplies
-                                    buttonProps={{
-                                      buttonClass: `ml-1 btn btn-icon btn-primary ${!supply.State ? "text-gray-400 cursor-not-allowed" : ""}`,
-                                      isDisabled: !supply.State,
-                                      buttonText: <BiEdit />,
-                                    }}
-                                    supplyToEdit={supply}
-                                    onUpdate={handleUpdateSupply}
-                                  />
-
-                                  <CreateLosses supply={supply} onLossCreated={handleLossCreated} />
-
-                                  <SeeLosses supply={supply} />
-
+                                <div style={{ position: 'relative' }}>
                                   <button
-                                    onClick={() => handleDelete(supply)}
-                                    className={`ml-1 btn btn-icon btn-danger ${!supply.State ? "text-gray-400 cursor-not-allowed" : ""}`}
-                                    disabled={!supply.State}
-                                    title="Este botón sirve para eliminar el insumo."
+                                    onClick={() => toggleMenu()}
+                                    className="ml-1 btn btn-icon btn-primary"
                                   >
-                                    <AiFillDelete />
+                                    Acciones
                                   </button>
-                                  <button
-                                    type="button"
-                                    className={`ml-1 btn btn-icon btn-success ${supply.State ? "active" : "inactive"}`}
-                                    onClick={() => toggleSupplyStatus(supply.ID_Supplies)}
-                                    title="Este botón sirve para cambiar el estado del insumo."
-                                  >
-                                    {supply.State ? (
-                                      <MdToggleOn className={`estado-icon active`} />
-                                    ) : (
-                                      <MdToggleOff className={`estado-icon inactive`} />
-                                    )}
-                                  </button>
+                                  {isMenuOpen && (
+                                    <div className="dropdown-menu">
+                                      <UpdateSupplies
+                                        buttonProps={{
+                                          buttonClass: `ml-1 btn btn-icon btn-primary ${!supply.State ? "text-gray-400 cursor-not-allowed" : ""}`,
+                                          isDisabled: !supply.State,
+                                          buttonText: <BiEdit />,
+                                        }}
+                                        supplyToEdit={supply}
+                                        onUpdate={handleUpdateSupply}
+                                      />
+
+                                      <CreateLosses supply={supply} onLossCreated={handleLossCreated} />
+
+                                      <SeeLosses supply={supply} />
+
+                                      <button
+                                        onClick={() => handleDelete(supply)}
+                                        className={`ml-1 btn btn-icon btn-danger ${!supply.State ? "text-gray-400 cursor-not-allowed" : ""}`}
+                                        disabled={!supply.State}
+                                        title="Este botón sirve para eliminar el insumo."
+                                      >
+                                        <AiFillDelete />
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className={`ml-1 btn btn-icon btn-success ${supply.State ? "active" : "inactive"}`}
+                                        onClick={() => toggleSupplyStatus(supply.ID_Supplies)}
+                                        title="Este botón sirve para cambiar el estado del insumo."
+                                      >
+                                        {supply.State ? (
+                                          <MdToggleOn className={`estado-icon active`} />
+                                        ) : (
+                                          <MdToggleOff className={`estado-icon inactive`} />
+                                        )}
+                                      </button>
+                                    </div>
+                                  )}
                                 </div>
                               </td>
                             </tr>
@@ -219,7 +228,6 @@ function SuppliesPage() {
           </div>
         </div>
       </div>
-
 
       <div className="pagination-container pagination">
         <Stack spacing={2}>
