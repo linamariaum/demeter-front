@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from 'react'
-import { Createsale, CreatesaleDetail, GetDetails, UpdSale, getSale, pay, GetoneSale, CreateManysaleDetails, deleteDetailSale } from '../Api/sale.request';
+import { Createsale, CreatesaleDetail, GetDetails, UpdSale, getSale, pay, GetoneSale, CreateManysaleDetails, deleteDetailSale } from '../Api/sale.request.js';
 import React from 'react';
 export const SaleContext = createContext();
 
