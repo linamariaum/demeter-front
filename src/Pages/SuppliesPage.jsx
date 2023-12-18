@@ -42,7 +42,7 @@ function SuppliesPage() {
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
-
+//ss
   const handleCheckboxChange = () => {
     setShowEnabledOnly(!showEnabledOnly);
   };
