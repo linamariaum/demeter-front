@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import { BiEdit } from "react-icons/bi";
-import { AiOutlineEye, AiFillDelete } from "react-icons/ai";
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
-import { useSupplier } from "../Context/Supplier.context";
+import { useSupplier } from "../Context/Supplier.context.jsx";
 import "../css/style.css";
 import "../css/landing.css";
 import "../fonts/cryptofont.css";
@@ -11,7 +10,6 @@ import "../fonts/fontawesome.css";
 import "../fonts//material.css";
 import CreateSupplier from "../Components/CreateSupplier.jsx";
 import DeleteSupplier from "../Components/DeleteSupplier.jsx";
-import LinkedSupplier from "../Components/LinkedSupplier.jsx";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';

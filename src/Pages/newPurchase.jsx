@@ -1,16 +1,16 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { AiFillDelete } from "react-icons/ai";
-import ShoppingBill from '../Components/ShoppingBill';
-import { useSupplies } from '../Context/Supplies.context'
+import ShoppingBill from '../Components/ShoppingBill.jsx';
+import { useSupplies } from '../Context/Supplies.context.jsx'
 import '../css/style.css'
 import '../css/general.css'
-import { useShoppingContext } from '../Context/Shopping.context';
+import { useShoppingContext } from '../Context/Shopping.context.jsx';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import Select from 'react-select';
-import CreateSupplies from '../Components/CreateSupplies';
-import useLocaStorage from '../hooks/useLocaStorage';
+import CreateSupplies from '../Components/CreateSupplies.jsx';
+import useLocaStorage from '../hooks/useLocaStorage.jsx';
 
 
 

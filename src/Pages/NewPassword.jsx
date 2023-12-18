@@ -2,7 +2,7 @@ import React, { useState, useEffect, useLayoutEffect, useRef } from 'react'
 import logo from '../img/logo.png'
 import {  AiOutlineEye, AiOutlineEyeInvisible , AiOutlineLock } from 'react-icons/ai'
 import { useNavigate, Link, useParams, Navigate } from 'react-router-dom';
-import { useUser } from '../Context/User.context';
+import { useUser } from '../Context/User.context.jsx';
 import { useForm } from 'react-hook-form';
 import '../css/style.css'
 import '../css/landing.css'

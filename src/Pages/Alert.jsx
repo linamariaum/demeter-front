@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { useSupplies } from '../Context/Supplies.context';
+import { useSupplies } from '../Context/Supplies.context.jsx';
 import StoreIcon from '@mui/icons-material/Store';
 import { useNavigate } from 'react-router-dom';
 import Pagination from '@mui/material/Pagination';

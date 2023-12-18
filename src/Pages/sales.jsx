@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useProductCategories } from '../Context/ProductCategoriesContext';
-import { useProduct } from '../Context/ProductContext';
-import { useSaleContext } from '../Context/SaleContext';
-import Bill from './Bill_Sale';
-import Edit_Bill from './EditSale';
+import { useProductCategories } from '../Context/ProductCategoriesContext.jsx';
+import { useProduct } from '../Context/ProductContext.jsx';
+import { useSaleContext } from '../Context/SaleContext.jsx';
+import Bill from './Bill_Sale.jsx';
+import Edit_Bill from './EditSale.jsx';
 
 function Sales() {
     const { ProductCategories, fetchProductCategories } = useProductCategories();

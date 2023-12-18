@@ -5,11 +5,11 @@ import { MdToggleOn, MdToggleOff } from "react-icons/md";
 import "../css/style.css";
 import "../css/landing.css";
 
-import { useRole } from "../Context/Role.context";
+import { useRole } from "../Context/Role.context.jsx";
 import { useUser } from "../Context/User.context.jsx";
-import CreateUser from "../Components/CreateUser";
-import UpdateUser from '../Components/UpdateUser';
-import DeleteUser from "../Components/DeleteUser";
+import CreateUser from "../Components/CreateUser.jsx";
+import UpdateUser from '../Components/UpdateUser.jsx';
+import DeleteUser from "../Components/DeleteUser.jsx";
 
 // Paginado
 import Pagination from "@mui/material/Pagination";

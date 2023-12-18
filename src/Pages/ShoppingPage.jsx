@@ -1,10 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useShoppingContext } from '../Context/Shopping.context';
-import { useSupplier } from "../Context/Supplier.context";
-import { useUser } from '../Context/User.context';
+import { useShoppingContext } from '../Context/Shopping.context.jsx';
+import { useUser } from '../Context/User.context.jsx';
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
-import ShoppingView from '../Components/ShoppingView';
+import ShoppingView from '../Components/ShoppingView.jsx';
 import '../css/style.css';
 import "../css/landing.css";
 import Pagination from '@mui/material/Pagination';

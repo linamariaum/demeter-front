@@ -3,7 +3,7 @@ import logo from '../img/logo.png';
 import { AiOutlineMail } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useUser } from '../Context/User.context';
+import { useUser } from '../Context/User.context.jsx';
 import '../css/style.css';
 import '../css/landing.css';
 

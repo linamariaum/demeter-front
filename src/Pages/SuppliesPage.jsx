@@ -6,7 +6,7 @@ import { useSupplies } from "../Context/Supplies.context.jsx";
 import { useCategorySupplies } from '../Context/CategorySupplies.context.jsx';
 import CreateSupplies from "../Components/CreateSupplies.jsx";
 import SeeLosses from "../Components/SeeLosses.jsx";
-import CreateLosses from '../Components/CreateLosses';
+import CreateLosses from '../Components/CreateLosses.jsx';
 import UpdateSupplies from "../Components/UpdateSupplies.jsx";
 import DeleteSupplies from "../Components/DeleteSupplies.jsx";
 import Pagination from '@mui/material/Pagination';

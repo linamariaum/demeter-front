@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSaleContext } from '../Context/SaleContext';
-import { useProduct } from '../Context/ProductContext';
-import { IoIosAdd } from 'react-icons/io';
-import { AiOutlineMinus } from 'react-icons/ai';
+import { useSaleContext } from '../Context/SaleContext.jsx';
+import { useProduct } from '../Context/ProductContext.jsx';
 import { useUser } from "../Context/User.context.jsx";
 function ReadSale() {
     const { Create, Sale, getDetailsSale, details, Count , fetchGain, total } = useSaleContext();

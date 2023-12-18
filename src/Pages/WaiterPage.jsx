@@ -15,7 +15,6 @@ import { useUser } from '../Context/User.context.jsx';
 // Componentes
 import CreateWaiter from '../Components/CreateWaiter.jsx';
 import UpdateWaiter from '../Components/UpdateWaiter.jsx';
-import AuthorizationModal from '../Components/AuthorizationModal.jsx';
 
 // Paginado
 import Pagination from '@mui/material/Pagination';

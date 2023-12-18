@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect } from 'react';
-import { useDashboard } from '../Context/Dashboard.context';
+import { useDashboard } from '../Context/Dashboard.context.jsx';
 import { useUser } from '../Context/User.context.jsx';
 // import { useProduct } from '../Context/Product.context.jsx';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
