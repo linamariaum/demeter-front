@@ -4,6 +4,8 @@ import Box from '@mui/material/Box';
 import { useForm } from 'react-hook-form';
 import { useLosses } from '../Context/Losses.context';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { useSupplies } from "../Context/Supplies.context.jsx";
+
 
 const style = {
     position: 'absolute',
@@ -19,6 +21,7 @@ const style = {
 };
 
 function CreateLosses({ supply, onLossCreated }) {
+    const { supplies } = useSupplies();
     const { createLoss } = useLosses();
     const [open, setOpen] = useState(false);
 
@@ -107,7 +110,7 @@ function CreateLosses({ supply, onLossCreated }) {
                                                     },
                                                     validRange: (value) => {
                                                         const parsedValue = parseFloat(value);
-                                                        const parsedUnit = parseFloat(supply.Unit);
+                                                        const parsedUnit = parseFloat(supplies.Unit);
                                                 
                                                         if (parsedValue < 0 || parsedValue > 99999999) {
                                                             return 'La cantidad debe estar entre 0 y 99.999.999.';

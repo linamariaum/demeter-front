@@ -62,7 +62,7 @@ function ProductCategoryPage() {
     }
   
     return (
-      `${Name_Supplies} ${Unit} ${Measure} ${Stock} ${State}`
+      `${Name_ProductCategory} ${State}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     );
