@@ -5,8 +5,6 @@ import { useSupplier } from "../Context/Supplier.context";
 import { useUser } from '../Context/User.context';
 import { MdToggleOn, MdToggleOff } from "react-icons/md";
 import ShoppingView from '../Components/ShoppingView';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 import '../css/style.css';
 import "../css/landing.css";
 import Pagination from '@mui/material/Pagination';
@@ -14,11 +12,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 
 function ShoppingPage() {
-  const { getOneShopping, shopping: Shopping, selectAction, disableShopping, getShopingByProvider } = useShoppingContext();
+  const { shopping: Shopping, selectAction, disableShopping, getShopingByProvider } = useShoppingContext();
   const [searchTerm, setSearchTerm] = useState("");
   const { getCurrentUser } = useUser();
   const [currentUser, setCurrentUser] = useState({})
@@ -103,68 +99,6 @@ function ShoppingPage() {
     setCurrentPage(value);
   };
 
-
-  const generatePDF = () => {
-    const tableBody = shoppingData?.map((shoppingItem) => {
-      const {
-        ID_Shopping,
-        Datetime,
-        Total,
-        Invoice_Number,
-        Supplier: { Name_Supplier },
-      } = shoppingItem;
-
-      return [
-        { text: ID_Shopping, bold: true, alignment: 'center' },
-        { text: `${currentUser.Name_User} ${currentUser.LastName_User}`, alignment: 'center' }, // Agregar información del usuario
-        { text: Invoice_Number },
-        { text: Name_Supplier, alignment: 'center' },
-        { text: new Date(Datetime).toLocaleDateString(), alignment: 'center' },
-        { text: Total, alignment: 'center' },
-
-
-      ];
-    });
-
-    const documentDefinition = {
-      content: [
-        { text: 'Reporte de compras', fontSize: 16, margin: [0, 10, 0, 10] }, // Margen superior ajustado
-        {
-          table: {
-            headerRows: 1,
-            widths: ['auto', 'auto', 'auto', '*', 'auto', '*'], // Ajuste de anchos de columnas
-            body: [
-              [
-                'ID',
-                'Usuario',
-                'N. factura',
-                'Proveedor',
-                'Fecha',
-                'Total',
-              ],
-              ...tableBody,
-            ],
-          },
-          layout: {
-            defaultBorder: false, // Si no necesitas bordes en cada celda
-            fontSize: 12,
-            fillColor: (rowIndex) => (rowIndex % 2 === 0 ? '#CCCCCC' : null),
-            paddingTop: () => 5, // Espaciado superior de cada celda
-            paddingBottom: () => 5, // Espaciado inferior de cada celda
-          },
-        },
-      ],
-      styles: {
-        table: {
-          width: '100%',
-          margin: [0, 10, 0, 15], // Margen inferior ajustado para la tabla
-        },
-      },
-    };
-
-    pdfMake.createPdf(documentDefinition).download('shopping_report.pdf');
-  };
-
   const handleDisableShopping = async (id) => {
     const disabledShopping = await disableShopping(id)
 
@@ -196,10 +130,6 @@ function ShoppingPage() {
                           Registrar compra
                         </button>
                       </Link>
-
-                      <button title='Presiona para generar el pdf ' className="btn btn-outline-secondary p-2 ml-1" onClick={generatePDF}>Generar Reporte </button>
-
-
 
                     </div>
                     <div className="col-md-6">
@@ -330,4 +260,4 @@ function ShoppingPage() {
   );
 }
 
-export default ShoppingPage
+export default ShoppingPage;
