@@ -32,13 +32,22 @@ function CreateLosses({ supply, onLossCreated }) {
 
     const onSubmit = handleSubmit(async (values) => {
         try {
+            const parsedLosses = parseFloat(values.Unit);
+            const parsedSupply = parseFloat(supply.Unit);
+    
+            if (isNaN(parsedLosses) || isNaN(parsedSupply) || parsedLosses > parsedSupply) {
+                // Mostrar mensaje de error
+                alert('La cantidad de pérdida no puede ser mayor que la cantidad de suministro.');
+                return;
+            }
+    
             await createLoss({
                 ...values,
                 Supplies_ID: supply.ID_Supplies,
                 Measure: supply.Measure,
             });
             setOpen(false);
-
+    
             if (onLossCreated) {
                 onLossCreated();
                 reset();
@@ -99,13 +108,13 @@ function CreateLosses({ supply, onLossCreated }) {
                                                     validRange: (value) => {
                                                         const parsedValue = parseFloat(value);
                                                         const parsedUnit = parseFloat(supply.Unit);
-
+                                                
                                                         if (parsedValue < 0 || parsedValue > 99999999) {
                                                             return 'La cantidad debe estar entre 0 y 99.999.999.';
                                                         }
-                                                        
+                                                
                                                         if (parsedValue > parsedUnit) {
-                                                            return `No puede ser mayor que la cantidad: ${parsedUnit}.`;
+                                                            return `La cantidad de pérdida no puede ser mayor que la cantidad disponible: ${parsedUnit}.`;
                                                         }
                                                     },
                                                 },
