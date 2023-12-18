@@ -1,19 +1,19 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useDashboard } from '../Context/Dashboard.context';
 import { useUser } from '../Context/User.context.jsx';
-import { useProduct } from '../Context/Product.context.jsx';
+// import { useProduct } from '../Context/Product.context.jsx';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 
 const Dashboard = () => {
   const { user, getUsers, toggleUserStatus, deleteUser } = useUser();
-  const { product, getProducts, toggleSupplyStatus, getCurrentProduct } = useProduct();
+  // const { product, getProducts, toggleSupplyStatus, getCurrentProduct } = useProduct();
   const { salesChart, fetchSales, fetchSalesusers, salesuserChart, fetchBP, besProd , shopsChart, fetchShops,
     fetchsupli,
     supli } = useDashboard();
 
   useLayoutEffect(() => {
     getUsers();
-    getProducts();
+    // getProducts();
     fetchSales();
     fetchSalesusers();
     fetchBP();
@@ -79,7 +79,7 @@ const Dashboard = () => {
           </PieChart>
         </div>
         <div className='flex flex-col mx-[5vh]'>
-          <h2 className='text-2xl font-bold mt-4 mb-2 whitespace-normal text-center'>El Producto más vendido fue: {besProd.ProductName}</h2>
+          {/* <h2 className='text-2xl font-bold mt-4 mb-2 whitespace-normal text-center'>El Producto más vendido fue: {besProd.ProductName}</h2> */}
           <h2 className='text-2xl font-bold mb-4 whitespace-normal text-center'>Cantidad de Ventas: {besProd.detailCount}</h2>
         </div>
       </div>

@@ -13,9 +13,9 @@ import { CategorySupplies } from './Context/CategorySupplies.context.jsx'
 import { CategoryProducts } from './Context/CategoryProducts.context.jsx'
 import { SaleProvider } from './Context/SaleContext.jsx'
 import { DashboardProvider } from './Context/Dashboard.context.jsx'
-import { Product } from './Context/Product.context.jsx'
+// import { Product } from './Context/Product.context.jsx'
 import { ProductCategoriesProvider } from './Context/ProductCategoriesContext'
-import { ProductProvider } from './Context/ProductContext.jsx'
+// import { ProductProvider } from './Context/ProductContext.jsx'
 import { Module } from './Context/Module.context.jsx'
 import { Losses } from './Context/Losses.context.jsx'
 
@@ -33,11 +33,11 @@ import DashBoard from './Pages/Dashboard.jsx'
 import ResetPassword from './Pages/ResetPassword.jsx'
 import NewPassword from './Pages/NewPassword.jsx'
 import NewPurchase from './Pages/newPurchase.jsx'
-import ProductPage from './Pages/ProductPage.jsx'
+// import ProductPage from './Pages/ProductPage.jsx'
 import Alert from './Pages/Alert.jsx'
 import Instruction from './Pages/Instruction.jsx'
-import ProductDetails from './Pages/ProductDetails.jsx'
-import ViewSales from './Pages/ViewSales'
+// import ProductDetails from './Pages/ProductDetails.jsx'
+// import ViewSales from './Pages/ViewSales'
 import Sales from './Pages/sales'
 
 // Menu & Header
@@ -57,13 +57,13 @@ function App() {
             <DashboardProvider>
               <CategorySupplies>
                 <CategoryProducts>
-                  <Product>
+                  {/* <Product> */}
                     <Supplies>
                       <Losses>
                         <ShoppingProvider>
                           <SaleProvider>
-                            <ProductCategoriesProvider>
-                              <ProductProvider>
+                            {/* <ProductCategoriesProvider>
+                              <ProductProvider> */}
                                 <Supplier>
                                   <Header />
                                   <Navbar />
@@ -84,24 +84,24 @@ function App() {
                                         <Route path='/shopping' element={<ShoppingPage />} />
                                         <Route path='/shop' element={<NewPurchase />} />
                                         <Route path='/category_product' element={<ProductCategoryPage />} />
-                                        <Route path='/product' element={<ProductPage />} />
+                                        {/* <Route path='/product' element={<ProductPage />} /> */}
                                         <Route path='/waiter' element={<WaiterPage />} />
                                         <Route path='/alert' element={<Alert />} />
                                         <Route path='/instructions' element={<Instruction />} />
-                                        <Route path='/create_product' element={<ProductDetails />} />
-                                        <Route path='/sale' element={<ViewSales></ViewSales>} />
+                                        {/* <Route path='/create_product' element={<ProductDetails />} /> */}
+                                        {/* <Route path='/sale' element={<ViewSales></ViewSales>} /> */}
                                         <Route path='/sales' element={<Sales />} />
                                       </Route>
                                     </Routes>
                                   </ErrorBoundary>
                                 </Supplier>
-                              </ProductProvider>
-                            </ProductCategoriesProvider>
+                              {/* </ProductProvider>
+                            </ProductCategoriesProvider> */}
                           </SaleProvider>
                         </ShoppingProvider>
                       </Losses>
                     </Supplies>
-                  </Product>
+                  {/* </Product> */}
                 </CategoryProducts>
               </CategorySupplies>
             </DashboardProvider>
