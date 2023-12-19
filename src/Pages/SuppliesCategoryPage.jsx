@@ -49,27 +49,32 @@ function SuppliesCategoryPage() {
   };
 
   const filteredSuppliesCategory = Category_supplies.filter((category) => {
-    const {
-      Name_SuppliesCategory,
-      State
-    } = category;
-  
+    const { Name_SuppliesCategory, State } = category;
+    
     if (showEnabledOnly) {
+
+      if (searchTerm.toLowerCase() !== 'deshabilitado') {
+        
+        if (!State) {
+          return false;
+        }
+      }
+
       return (
-        category.State && o
-        `${Name_SuppliesCategory} ${State}`
+        (State && searchTerm.toLowerCase() === 'habilitado') ||
+        `${Name_SuppliesCategory} ${State ? 'Habilitado' : 'Deshabilitado'}`
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
       );
     }
   
     return (
-      `${Name_SuppliesCategory}  ${State}`
+      `${Name_SuppliesCategory} ${State ? 'Habilitado' : 'Deshabilitado'}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     );
   });
-  
+
   const enabledSuppliesCategory = filteredSuppliesCategory.filter((suppliesCategory) => suppliesCategory.State);
   const disabledSuppliesCategory = filteredSuppliesCategory.filter((suppliesCategory) => !suppliesCategory.State);
   const sortedSuppliesCategory = [...enabledSuppliesCategory, ...disabledSuppliesCategory];

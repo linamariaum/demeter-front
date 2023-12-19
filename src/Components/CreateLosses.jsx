@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import { useForm } from 'react-hook-form';
 import { useLosses } from '../Context/Losses.context';
 import { IoMdArrowDropdown } from 'react-icons/io';
-import { useSupplies } from "../Context/Supplies.context.jsx";
 
 
 const style = {
@@ -20,8 +19,7 @@ const style = {
     pb: 2,
 };
 
-function CreateLosses({ supply, onLossCreated }) {
-    const { supplies } = useSupplies();
+function CreateLosses({ supply, supplyUnit, onLossCreated })  {
     const { createLoss } = useLosses();
     const [open, setOpen] = useState(false);
 
@@ -37,20 +35,20 @@ function CreateLosses({ supply, onLossCreated }) {
         try {
             const parsedLosses = parseFloat(values.Unit);
             const parsedSupply = parseFloat(supply.Unit);
-    
+
             if (isNaN(parsedLosses) || isNaN(parsedSupply) || parsedLosses > parsedSupply) {
                 // Mostrar mensaje de error
                 alert('La cantidad de pérdida no puede ser mayor que la cantidad de suministro.');
                 return;
             }
-    
+
             await createLoss({
                 ...values,
                 Supplies_ID: supply.ID_Supplies,
                 Measure: supply.Measure,
             });
             setOpen(false);
-    
+
             if (onLossCreated) {
                 onLossCreated();
                 reset();
@@ -110,14 +108,14 @@ function CreateLosses({ supply, onLossCreated }) {
                                                     },
                                                     validRange: (value) => {
                                                         const parsedValue = parseFloat(value);
-                                                        const parsedUnit = parseFloat(supplies.Unit);
-                                                
+                                                        const parsedUnit = parseFloat(supplyUnit);
+
                                                         if (parsedValue < 0 || parsedValue > 99999999) {
                                                             return 'La cantidad debe estar entre 0 y 99.999.999.';
                                                         }
-                                                
+
                                                         if (parsedValue > parsedUnit) {
-                                                            return `La cantidad de pérdida no puede ser mayor que la cantidad disponible: ${parsedUnit}.`;
+                                                            return `No puede ser mayor que la cantidad disponible: ${parsedUnit}.`;
                                                         }
                                                     },
                                                 },

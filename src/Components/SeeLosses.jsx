@@ -94,7 +94,7 @@ function SeeLosses({ supply }) {
                         <div className="buttonconfirm">
                             <div className="mb-3">
                                 <button
-                                    className="btn btn-danger"
+                                    className="btn btn-primary"
                                     onClick={handleClose}
                                     type="button"
                                     title="Este botón sirve para cerrar la ventana modal."

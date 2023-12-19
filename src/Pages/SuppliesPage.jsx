@@ -42,39 +42,45 @@ function SuppliesPage() {
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
-//ss
+
   const handleCheckboxChange = () => {
     setShowEnabledOnly(!showEnabledOnly);
   };
 
   const filteredSupplies = supplies.filter((supply) => {
-    const searchString = searchTerm.toLowerCase();
+    const {
+      Name_Supplies,
+      State,
+      Unit,   
+      Measure,
+      Stock,
+    } = supply;
+  
     const supplyCategoryName = Category_supplies.find(
       (category) => category.ID_SuppliesCategory === supply.SuppliesCategory_ID
     )?.Name_SuppliesCategory.toLowerCase() || '';
   
+    const isEnabled = State && searchTerm.toLowerCase() !== 'deshabilitado';
+  
     if (showEnabledOnly) {
+
+      if (!isEnabled) {
+        return false;
+      }
+
       return (
-        supply.State &&
-        isSearchMatch(supply, searchString, supplyCategoryName)
+        `${Name_Supplies} ${State ? 'Habilitado' : 'Deshabilitado'} ${Unit} ${Measure} ${Stock} ${supplyCategoryName}`
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
       );
     }
   
-    return isSearchMatch(supply, searchString, supplyCategoryName);
+    return (
+      `${Name_Supplies} ${State ? 'Habilitado' : 'Deshabilitado'} ${Unit} ${Measure} ${Stock} ${supplyCategoryName}`
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
   });
-   
-  const isSearchMatch = (supply, searchString, category) => {
-    const supplyFields = [
-      supply.Name_Supplies,
-      supply.Unit,
-      supply.Measure,
-      supply.Stock,
-      supply.State.toString(),
-      category,
-    ];
-  
-    return supplyFields.some((field) => field.toLowerCase().includes(searchString));
-  };
 
   const enabledSupplies = filteredSupplies.filter((supply) => supply.State);
   const disabledSupplies = filteredSupplies.filter((supply) => !supply.State);
@@ -196,7 +202,7 @@ function SuppliesPage() {
                                     onUpdate={handleUpdateSupply}
                                   />
 
-                                  <CreateLosses supply={supply} onLossCreated={handleLossCreated} />
+                                  <CreateLosses supply={supply} supplyUnit={supply.Unit} onLossCreated={handleLossCreated} />
 
                                   <SeeLosses supply={supply} />
 

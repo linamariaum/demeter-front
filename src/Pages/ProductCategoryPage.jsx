@@ -47,22 +47,27 @@ function ProductCategoryPage() {
   };
 
   const filteredProductsCategory = Category_products.filter((category) => {
-    const {
-      Name_ProductCategory,
-      State
-    } = category;
-  
+    const { Name_ProductCategory, State } = category;
+    
     if (showEnabledOnly) {
+
+      if (searchTerm.toLowerCase() !== 'deshabilitado') {
+        
+        if (!State) {
+          return false;
+        }
+      }
+      
       return (
-        category.State && o
-        `${Name_ProductCategory} ${State}`
+        (State && searchTerm.toLowerCase() === 'habilitado') ||
+        `${Name_ProductCategory} ${State ? 'Habilitado' : 'Deshabilitado'}`
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
       );
     }
   
     return (
-      `${Name_ProductCategory} ${State}`
+      `${Name_ProductCategory} ${State ? 'Habilitado' : 'Deshabilitado'}`
         .toLowerCase()
         .includes(searchTerm.toLowerCase())
     );
